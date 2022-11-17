@@ -2,7 +2,7 @@ type Props = {
   size?: number;
 };
 
-export const Logo = ({ size = 50 }: Props) => {
+export const Logo = ({ size = 40 }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
