@@ -17,7 +17,7 @@ export const Footer = () => {
           target="_blank"
           className="transition hover:text-purple-400"
         >
-          <IconBrandFacebook stroke={1} />
+          <IconBrandFacebook />
         </Link>
         <Link
           href="https://twitter.com/BioBoostFit"
@@ -25,7 +25,7 @@ export const Footer = () => {
           target="_blank"
           className="transition hover:text-purple-400"
         >
-          <IconBrandTwitter stroke={1} />
+          <IconBrandTwitter />
         </Link>
         <Link
           href="https://www.instagram.com/bioboostfit/"
@@ -33,7 +33,7 @@ export const Footer = () => {
           target="_blank"
           className="transition hover:text-purple-400"
         >
-          <IconBrandInstagram stroke={1} />
+          <IconBrandInstagram />
         </Link>
       </div>
     </footer>
