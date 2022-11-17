@@ -1,4 +1,4 @@
-import { Card } from "@components";
+import { Card, CardHeader } from "@components";
 import { IconChecklist } from "@tabler/icons";
 import { type NextPage } from "next";
 
@@ -49,14 +49,7 @@ const Dashboard: NextPage = () => {
   return (
     <>
       <Card>
-        {/* Header */}
-        <header className="flex items-center gap-3">
-          <div className="flex items-center justify-center rounded-xl bg-purple-400 p-3 text-stone-900">
-            <IconChecklist />
-          </div>
-          <h2 className="text-lg font-medium">Habits</h2>
-        </header>
-        {/* End of Header */}
+        <CardHeader icon={IconChecklist}>Habits</CardHeader>
 
         {todos.map((todo) => (
           <div>
