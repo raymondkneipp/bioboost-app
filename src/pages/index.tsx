@@ -1,4 +1,4 @@
-import { Navbar } from "@components";
+import { Hero, Navbar } from "@components";
 import { type NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
@@ -16,6 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <Hero />
       <p className="text-2xl">
         {hello.data ? hello.data.greeting : "Loading tRPC query..."}
       </p>
