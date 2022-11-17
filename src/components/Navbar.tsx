@@ -1,5 +1,5 @@
+import { Btn, Logo } from "@components";
 import Link from "next/link";
-import { Logo } from "./Logo";
 
 export const Navbar = () => {
   return (
@@ -9,9 +9,11 @@ export const Navbar = () => {
         <span className="text-3xl font-medium">BioBoost</span>
       </Link>
 
-      <div className="flex gap-6">
-        <Link href="/dashboard">Login</Link>
-        <Link href="/dashboard">Sign Up</Link>
+      <div className="flex items-center gap-6">
+        <Btn href="/dashboard" intent="secondary">
+          Login
+        </Btn>
+        <Btn href="/dashboard">Sign Up</Btn>
       </div>
     </nav>
   );
