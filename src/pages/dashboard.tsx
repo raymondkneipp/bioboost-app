@@ -1,3 +1,4 @@
+import { Card } from "@components";
 import { IconChecklist } from "@tabler/icons";
 import { type NextPage } from "next";
 
@@ -47,8 +48,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <>
-      {/* Card */}
-      <article className="rounded-xl bg-stone-800 p-3">
+      <Card>
         {/* Header */}
         <header className="flex items-center gap-3">
           <div className="flex items-center justify-center rounded-xl bg-purple-400 p-3 text-stone-900">
@@ -75,8 +75,7 @@ const Dashboard: NextPage = () => {
             )}
           </div>
         ))}
-      </article>
-      {/* End of Card */}
+      </Card>
     </>
   );
 };
