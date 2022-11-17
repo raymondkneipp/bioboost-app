@@ -16,12 +16,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <p className="text-2xl">
-          {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-        </p>
-        <AuthShowcase />
-      </main>
+      <p className="text-2xl">
+        {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+      </p>
+      <AuthShowcase />
     </>
   );
 };
