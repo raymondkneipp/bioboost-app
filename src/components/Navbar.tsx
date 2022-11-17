@@ -1,12 +1,11 @@
-import { Btn, Logo } from "@components";
+import { Brand, Btn } from "@components";
 import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <nav className="container flex items-center justify-between py-3">
-      <Link href="/" className="flex items-center gap-3 text-purple-400">
-        <Logo />
-        <span className="text-3xl font-medium">BioBoost</span>
+    <nav className="container flex items-center justify-between py-6">
+      <Link href="/">
+        <Brand />
       </Link>
 
       <div className="flex items-center gap-6">
