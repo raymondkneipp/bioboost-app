@@ -7,5 +7,7 @@ export * from "./Footer";
 export * from "./Habits/CreateStack";
 export * from "./Habits/ListStacks";
 export * from "./Hero";
+export * from "./Input";
 export * from "./Logo";
 export * from "./Navbar";
+export * from "./Label";

@@ -6,7 +6,7 @@ type Props = {
 export const Error = ({ id, message }: Props) => {
   if (message) {
     return (
-      <label htmlFor={id} className="text-red-400">
+      <label htmlFor={id} className="text-sm text-red-400">
         {message}
       </label>
     );

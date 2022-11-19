@@ -6,6 +6,7 @@ const buttonStyles = cva("rounded-full font-medium transition", {
     intent: {
       primary: "bg-purple-400 text-stone-900 hover:bg-purple-300",
       secondary: "bg-white/0 hover:bg-white/10",
+      danger: "bg-red-400 text-stone-900 hover:bg-red-300",
     },
     size: {
       sm: "py-0 px-1.5",
