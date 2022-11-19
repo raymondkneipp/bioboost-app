@@ -19,17 +19,45 @@ const buttonStyles = cva("rounded-full font-medium transition", {
   },
 });
 
-type ButtonProps = {
+interface Link {
   href: string;
+  onClick?: never;
+}
+
+interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  href?: never;
+  onClick?: () => void;
+}
+
+interface ButtonProps extends VariantProps<typeof buttonStyles> {
   children: string;
-};
+}
 
-export interface Props extends ButtonProps, VariantProps<typeof buttonStyles> {}
+type Props = ButtonProps & (Button | Link);
 
-export const Btn = ({ children, intent, href, size }: Props) => {
+export const Btn = ({
+  children,
+  intent,
+  href,
+  onClick,
+  size,
+  ...rest
+}: Props) => {
+  if (href) {
+    return (
+      <Link href={href} className={buttonStyles({ intent, size })}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link href={href} className={buttonStyles({ intent, size })}>
+    <button
+      onClick={onClick}
+      className={buttonStyles({ intent, size })}
+      {...rest}
+    >
       {children}
-    </Link>
+    </button>
   );
 };
