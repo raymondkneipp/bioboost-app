@@ -16,7 +16,7 @@ export const ListStacks = () => {
             <>
               {stacks.data.map((stack) => {
                 return (
-                  <div>
+                  <div key={stack.id}>
                     <h3>{stack.name}</h3>
                     <div className="ml-6">
                       {stack.habits.map((habit) => {
@@ -26,7 +26,7 @@ export const ListStacks = () => {
                           ? true
                           : false;
                         return (
-                          <div>
+                          <div key={habit.id}>
                             <input type="checkbox" /> {habit.name}{" "}
                             {completed ? "yes" : "no"}
                           </div>
