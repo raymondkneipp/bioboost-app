@@ -1,6 +1,7 @@
 import { Error, Label } from "@components";
 import { cva, VariantProps } from "class-variance-authority";
 import { useId } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 const inputStyles = cva(
   "bg-transparent rounded-xl border border-stone-700 px-3 py-1.5 w-full",
@@ -15,15 +16,16 @@ interface Props
     VariantProps<typeof inputStyles> {
   label: string;
   error: string | undefined;
+  register: UseFormRegisterReturn<any>;
 }
 
-export const Input = ({ label, error, ...rest }: Props) => {
+export const Input = ({ label, error, register, ...rest }: Props) => {
   const id = useId();
 
   return (
     <div className="flex w-full flex-col items-start gap-1">
       <Label htmlFor={id}>{label}</Label>
-      <input id={id} {...rest} className={inputStyles()} />
+      <input id={id} {...register} {...rest} className={inputStyles()} />
       <Error id={id} message={error} />
     </div>
   );

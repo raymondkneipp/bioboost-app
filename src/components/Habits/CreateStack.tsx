@@ -47,7 +47,7 @@ export const CreateStack = () => {
           label="Stack Name"
           error={errors.name?.message}
           type="text"
-          {...register("name")}
+          register={register("name")}
         />
 
         <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-stone-700 p-3">
@@ -60,7 +60,8 @@ export const CreateStack = () => {
                 label="Habit"
                 error={errors.habits?.[index]?.name?.message}
                 type="text"
-                {...register(`habits.${index}.name` as const)}
+                register={register(`habits.${index}.name` as const)}
+                // {...register(`habits.${index}.name` as const)}
               />
               {index > 0 && (
                 <Btn
