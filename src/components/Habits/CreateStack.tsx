@@ -1,4 +1,4 @@
-import { Btn, Card, CardHeader } from "@components";
+import { Btn, Card, CardHeader, Error } from "@components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconClipboardPlus } from "@tabler/icons";
 import { CreateStackInputType, createStackValidator } from "@validators";
@@ -42,7 +42,7 @@ export const CreateStack = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="stack-name">Stack Name</label>
         <input type="text" id="stack-name" {...register("name")} />
-        <p>{errors.name?.message}</p>
+        <Error id="stack-name" message={errors.name?.message} />
 
         <div className="flex flex-col gap-3 rounded-xl border border-stone-700 p-3">
           {fields.map((field, index) => (
@@ -52,6 +52,10 @@ export const CreateStack = () => {
                 type="text"
                 id={field.id}
                 {...register(`habits.${index}.name` as const)}
+              />
+              <Error
+                id={field.id}
+                message={errors.habits?.[index]?.name?.message}
               />
               <p>{errors.habits?.[index]?.name?.message}</p>
               <Btn

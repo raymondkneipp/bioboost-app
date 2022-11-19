@@ -2,6 +2,7 @@ export * from "./Brand";
 export * from "./Btn";
 export * from "./Card";
 export * from "./Empty";
+export * from "./Error";
 export * from "./Footer";
 export * from "./Habits/CreateStack";
 export * from "./Habits/ListStacks";
