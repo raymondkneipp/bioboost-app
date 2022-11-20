@@ -1,5 +1,5 @@
 export * from "./Brand";
-export * from "./Btn";
+export * from "./Btn/Btn";
 export * from "./Card";
 export * from "./Empty";
 export * from "./Error";
