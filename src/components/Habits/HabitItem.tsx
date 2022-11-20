@@ -1,7 +1,7 @@
 import { Btn } from "@components";
 import { Switch } from "@headlessui/react";
 import { Habit } from "@prisma/client";
-import { IconCheck, IconX } from "@tabler/icons";
+import { IconCheck, IconTrash, IconX } from "@tabler/icons";
 import { isToday, startOfToday } from "date-fns";
 import { Fragment } from "react";
 import { trpc } from "utils/trpc";
@@ -35,7 +35,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
               checked
                 ? "bg-purple-400 hover:bg-purple-300"
                 : "bg-stone-700 hover:bg-stone-600"
-            } relative inline-flex items-center rounded-full p-1 transition disabled:cursor-not-allowed disabled:opacity-30`}
+            } relative flex h-8 w-8 items-center justify-center rounded-full transition disabled:cursor-not-allowed disabled:opacity-30`}
           >
             <span className="sr-only">
               {completed ? "unfinish" : "complete"} habit
@@ -46,7 +46,13 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
         )}
       </Switch>
       <span className="flex-1 text-stone-100">{name}</span>
-      <Btn onClick={() => deleteHabit.mutate(id)} intent="danger" size="sm">
+      <Btn
+        onClick={() => deleteHabit.mutate(id)}
+        intent="danger"
+        size="sm"
+        square
+        icon={IconTrash}
+      >
         Delete
       </Btn>
     </div>
