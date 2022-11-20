@@ -12,7 +12,7 @@ export const CardHeader = ({ icon, children }: Props) => {
       <div className="flex items-center justify-center rounded-xl bg-purple-400 p-3 text-stone-900">
         {createElement(icon)}
       </div>
-      <h2 className="text-lg font-medium">{children}</h2>
+      <h2 className="text-xl font-medium text-stone-100">{children}</h2>
     </header>
   );
 };

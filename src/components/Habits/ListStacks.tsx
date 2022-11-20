@@ -1,13 +1,9 @@
-import { Btn, Card, CardHeader, Empty } from "@components";
+import { Btn, Card, CardHeader, Empty, HabitItem } from "@components";
 import { IconChecklist } from "@tabler/icons";
-import { isToday, startOfToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
 export const ListStacks = () => {
   const stacks = trpc.habits.getAll.useQuery();
-  const completeHabit = trpc.habits.completeHabit.useMutation();
-  const incompleteHabit = trpc.habits.incompleteHabit.useMutation();
-  const deleteHabit = trpc.habits.deleteHabit.useMutation();
   const deleteStack = trpc.habits.deleteStack.useMutation();
 
   return (
@@ -21,54 +17,18 @@ export const ListStacks = () => {
               {stacks.data.map((stack) => {
                 return (
                   <div key={stack.id}>
-                    <h3>{stack.name}</h3>
+                    <h3 className="text-lg text-stone-100">{stack.name}</h3>
                     <Btn
                       onClick={() => deleteStack.mutate(stack.id)}
                       intent="secondary"
+                      size="sm"
                     >
                       delete
                     </Btn>
                     <div className="ml-6">
-                      {stack.habits.map((habit) => {
-                        const completed = habit.completedDates.find((date) =>
-                          isToday(date)
-                        )
-                          ? true
-                          : false;
-                        return (
-                          <div key={habit.id}>
-                            <input
-                              disabled={
-                                incompleteHabit.isLoading ||
-                                completeHabit.isLoading
-                              }
-                              className="disabled:opacity-30"
-                              type="checkbox"
-                              checked={completed}
-                              onChange={(e) => {
-                                if (completed) {
-                                  incompleteHabit.mutate({
-                                    id: habit.id,
-                                    date: startOfToday(),
-                                  });
-                                } else {
-                                  completeHabit.mutate({
-                                    id: habit.id,
-                                    date: startOfToday(),
-                                  });
-                                }
-                              }}
-                            />{" "}
-                            {habit.name}
-                            <Btn
-                              onClick={() => deleteHabit.mutate(habit.id)}
-                              intent="secondary"
-                            >
-                              x
-                            </Btn>
-                          </div>
-                        );
-                      })}
+                      {stack.habits.map((habit) => (
+                        <HabitItem {...habit} key={habit.id} />
+                      ))}
                     </div>
                   </div>
                 );
