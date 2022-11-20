@@ -12,3 +12,17 @@ export const createStackValidator = z.object({
 });
 
 export type CreateStackInputType = z.infer<typeof createStackValidator>;
+
+export const completeHabitValidator = z.object({
+  id: z.string(),
+  date: z.date(),
+});
+
+export type CompleteHabitInputType = z.infer<typeof completeHabitValidator>;
+
+export const incompleteHabitValidator = z.object({
+  id: z.string(),
+  date: z.date(),
+});
+
+export type IncompleteHabitInputType = z.infer<typeof incompleteHabitValidator>;

@@ -1,10 +1,12 @@
 import { Card, CardHeader, Empty } from "@components";
 import { IconChecklist } from "@tabler/icons";
-import { isToday } from "date-fns";
+import { isToday, startOfToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
 export const ListStacks = () => {
   const stacks = trpc.habits.getAll.useQuery();
+  const completeHabit = trpc.habits.completeHabit.useMutation();
+  const incompleteHabit = trpc.habits.incompleteHabit.useMutation();
 
   return (
     <Card>
@@ -27,8 +29,29 @@ export const ListStacks = () => {
                           : false;
                         return (
                           <div key={habit.id}>
-                            <input type="checkbox" /> {habit.name}{" "}
-                            {completed ? "yes" : "no"}
+                            <input
+                              disabled={
+                                incompleteHabit.isLoading ||
+                                completeHabit.isLoading
+                              }
+                              className="disabled:opacity-30"
+                              type="checkbox"
+                              checked={completed}
+                              onChange={(e) => {
+                                if (completed) {
+                                  incompleteHabit.mutate({
+                                    id: habit.id,
+                                    date: startOfToday(),
+                                  });
+                                } else {
+                                  completeHabit.mutate({
+                                    id: habit.id,
+                                    date: startOfToday(),
+                                  });
+                                }
+                              }}
+                            />{" "}
+                            {habit.name}
                           </div>
                         );
                       })}

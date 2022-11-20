@@ -61,7 +61,6 @@ export const CreateStack = () => {
                 error={errors.habits?.[index]?.name?.message}
                 type="text"
                 register={register(`habits.${index}.name` as const)}
-                // {...register(`habits.${index}.name` as const)}
               />
               {index > 0 && (
                 <Btn
