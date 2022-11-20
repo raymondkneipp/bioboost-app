@@ -1,5 +1,6 @@
 import { Btn, Card, CardHeader, Empty, HabitItem } from "@components";
-import { IconChecklist } from "@tabler/icons";
+import { IconCheck, IconChecklist, IconX } from "@tabler/icons";
+import { isToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
 export const ListStacks = () => {
@@ -15,17 +16,26 @@ export const ListStacks = () => {
           {stacks.data.length > 0 ? (
             <>
               {stacks.data.map((stack) => {
+                const stackCompleted = stack.habits.every((habit) => {
+                  if (habit.completedDates.length > 0) {
+                    return habit.completedDates.every((date) => isToday(date));
+                  }
+                  return false;
+                });
                 return (
                   <div key={stack.id}>
-                    <h3 className="text-lg text-stone-100">{stack.name}</h3>
-                    <Btn
-                      onClick={() => deleteStack.mutate(stack.id)}
-                      intent="secondary"
-                      size="sm"
-                    >
-                      delete
-                    </Btn>
-                    <div className="ml-6">
+                    <div className="flex gap-3">
+                      {stackCompleted ? <IconCheck /> : <IconX />}
+                      <h3 className="text-lg text-stone-100">{stack.name}</h3>
+                      <Btn
+                        onClick={() => deleteStack.mutate(stack.id)}
+                        intent="danger"
+                        size="sm"
+                      >
+                        delete
+                      </Btn>
+                    </div>
+                    <div className="ml-6 flex flex-col gap-3">
                       {stack.habits.map((habit) => (
                         <HabitItem {...habit} key={habit.id} />
                       ))}
