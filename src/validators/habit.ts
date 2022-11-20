@@ -10,19 +10,19 @@ export const createStackValidator = z.object({
     .min(1)
     .max(6),
 });
-
 export type CreateStackInputType = z.infer<typeof createStackValidator>;
 
 export const completeHabitValidator = z.object({
   id: z.string(),
   date: z.date(),
 });
-
 export type CompleteHabitInputType = z.infer<typeof completeHabitValidator>;
 
-export const incompleteHabitValidator = z.object({
-  id: z.string(),
-  date: z.date(),
-});
-
+export const incompleteHabitValidator = completeHabitValidator;
 export type IncompleteHabitInputType = z.infer<typeof incompleteHabitValidator>;
+
+export const deleteHabitValidator = z.string();
+export type DeleteHabitInputType = z.infer<typeof deleteHabitValidator>;
+
+export const deleteStackValidator = z.string();
+export type DeleteStackInputType = z.infer<typeof deleteStackValidator>;

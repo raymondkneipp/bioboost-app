@@ -1,6 +1,8 @@
 import {
   completeHabitValidator,
   createStackValidator,
+  deleteHabitValidator,
+  deleteStackValidator,
   incompleteHabitValidator,
 } from "@validators";
 import { isSameDay } from "date-fns";
@@ -62,6 +64,24 @@ export const habitsRouter = router({
               (date) => !isSameDay(date, input.date)
             ),
           },
+        },
+      });
+    }),
+  deleteHabit: publicProcedure
+    .input(deleteHabitValidator)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.habit.delete({
+        where: {
+          id: input,
+        },
+      });
+    }),
+  deleteStack: publicProcedure
+    .input(deleteStackValidator)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.stack.delete({
+        where: {
+          id: input,
         },
       });
     }),

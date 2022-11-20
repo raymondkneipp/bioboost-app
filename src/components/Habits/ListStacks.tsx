@@ -1,4 +1,4 @@
-import { Card, CardHeader, Empty } from "@components";
+import { Btn, Card, CardHeader, Empty } from "@components";
 import { IconChecklist } from "@tabler/icons";
 import { isToday, startOfToday } from "date-fns";
 import { trpc } from "utils/trpc";
@@ -7,6 +7,8 @@ export const ListStacks = () => {
   const stacks = trpc.habits.getAll.useQuery();
   const completeHabit = trpc.habits.completeHabit.useMutation();
   const incompleteHabit = trpc.habits.incompleteHabit.useMutation();
+  const deleteHabit = trpc.habits.deleteHabit.useMutation();
+  const deleteStack = trpc.habits.deleteStack.useMutation();
 
   return (
     <Card>
@@ -20,6 +22,12 @@ export const ListStacks = () => {
                 return (
                   <div key={stack.id}>
                     <h3>{stack.name}</h3>
+                    <Btn
+                      onClick={() => deleteStack.mutate(stack.id)}
+                      intent="secondary"
+                    >
+                      delete
+                    </Btn>
                     <div className="ml-6">
                       {stack.habits.map((habit) => {
                         const completed = habit.completedDates.find((date) =>
@@ -52,6 +60,12 @@ export const ListStacks = () => {
                               }}
                             />{" "}
                             {habit.name}
+                            <Btn
+                              onClick={() => deleteHabit.mutate(habit.id)}
+                              intent="secondary"
+                            >
+                              x
+                            </Btn>
                           </div>
                         );
                       })}
