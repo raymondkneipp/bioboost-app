@@ -12,7 +12,11 @@ export const habitsRouter = router({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.stack.findMany({
       include: {
-        habits: true,
+        habits: {
+          orderBy: {
+            name: "asc",
+          },
+        },
       },
     });
   }),
