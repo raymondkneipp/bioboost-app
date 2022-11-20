@@ -16,7 +16,7 @@ interface Props
     VariantProps<typeof inputStyles> {
   label: string;
   error: string | undefined;
-  register: UseFormRegisterReturn<any>;
+  register?: UseFormRegisterReturn<any>;
 }
 
 export const Input = ({ label, error, register, ...rest }: Props) => {
