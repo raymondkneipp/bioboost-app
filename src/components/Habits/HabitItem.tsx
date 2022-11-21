@@ -33,7 +33,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
             }}
             className={`${
               checked
-                ? "bg-purple-400 hover:bg-purple-300"
+                ? "bg-purple-400 text-stone-900 hover:bg-purple-300"
                 : "bg-stone-700 hover:bg-stone-600"
             } relative flex h-8 w-8 items-center justify-center rounded-full transition disabled:cursor-not-allowed disabled:opacity-30`}
           >

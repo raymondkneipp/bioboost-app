@@ -1,12 +1,12 @@
-import { CreateStack, ListStacks } from "@components";
+import { StackCreate, StackList } from "@components";
 import { type NextPage } from "next";
 
 const Dashboard: NextPage = () => {
   return (
     <>
-      <ListStacks />
+      <StackList />
 
-      <CreateStack />
+      <StackCreate />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { IconCheck, IconChecklist, IconX } from "@tabler/icons";
 import { isToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
-export const ListStacks = () => {
+export const StackList = () => {
   const stacks = trpc.habits.getAll.useQuery();
   const deleteStack = trpc.habits.deleteStack.useMutation();
 
@@ -17,19 +17,16 @@ export const ListStacks = () => {
             <>
               {stacks.data.map((stack) => {
                 const stackCompleted = stack.habits.every((habit) => {
-                  if (habit.completedDates.length > 0) {
-                    if (
-                      habit.completedDates.filter((date) => isToday(date))
-                        .length >= 1
-                    ) {
-                      return true;
-                    }
-                    return false;
+                  if (
+                    habit.completedDates.filter((date) => isToday(date))
+                      .length >= 1
+                  ) {
+                    return true;
                   }
                   return false;
                 });
                 return (
-                  <div key={stack.id}>
+                  <div key={stack.id} className="flex flex-col gap-3">
                     <div className="flex gap-3">
                       {stackCompleted ? <IconCheck /> : <IconX />}
                       <h3 className="text-lg text-stone-100">{stack.name}</h3>
