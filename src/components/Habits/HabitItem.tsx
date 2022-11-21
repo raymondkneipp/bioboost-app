@@ -15,7 +15,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
 
   return (
     <div className="flex items-center gap-3">
-      <Switch name="terms-of-service" defaultChecked={completed} as={Fragment}>
+      <Switch defaultChecked={completed} as={Fragment}>
         {({ checked }) => (
           <button
             disabled={incompleteHabit.isLoading || completeHabit.isLoading}
@@ -36,7 +36,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
               checked
                 ? "bg-purple-400 text-stone-900 hover:bg-purple-300"
                 : "bg-stone-700 hover:bg-stone-600"
-            } relative flex h-8 w-8 items-center justify-center rounded-full transition disabled:cursor-not-allowed disabled:opacity-30`}
+            } flex h-8 w-8 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-30`}
           >
             <span className="sr-only">
               {completed ? "unfinish" : "complete"} habit
