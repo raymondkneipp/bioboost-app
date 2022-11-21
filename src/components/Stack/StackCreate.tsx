@@ -1,6 +1,11 @@
 import { Btn, Card, CardHeader, Input } from "@components";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconClipboardPlus } from "@tabler/icons";
+import {
+  IconCheck,
+  IconClipboardPlus,
+  IconMinus,
+  IconPlus,
+} from "@tabler/icons";
 import { CreateStackInputType, createStackValidator } from "@validators";
 import { useFieldArray, useForm } from "react-hook-form";
 import { trpc } from "utils/trpc";
@@ -72,6 +77,7 @@ export const StackCreate = () => {
                   intent="danger"
                   type="button"
                   size="sm"
+                  icon={IconMinus}
                 >
                   Remove
                 </Btn>
@@ -82,12 +88,15 @@ export const StackCreate = () => {
             onClick={() => append({ name: "" })}
             intent="secondary"
             type="button"
+            icon={IconPlus}
           >
             Add Habbit
           </Btn>
         </div>
 
-        <Btn type="submit">Create Habit Stack</Btn>
+        <Btn type="submit" icon={IconCheck}>
+          Create Habit Stack
+        </Btn>
       </form>
     </Card>
   );

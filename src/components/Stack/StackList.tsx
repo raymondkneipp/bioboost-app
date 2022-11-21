@@ -1,5 +1,5 @@
 import { Btn, Card, CardHeader, Empty, HabitItem } from "@components";
-import { IconCheck, IconChecklist, IconX } from "@tabler/icons";
+import { IconCheck, IconChecklist, IconTrash, IconX } from "@tabler/icons";
 import { isToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
@@ -27,15 +27,17 @@ export const StackList = () => {
                 });
                 return (
                   <div key={stack.id} className="flex flex-col gap-3">
-                    <div className="flex gap-3">
+                    <div className="flex items-center gap-3">
                       {stackCompleted ? <IconCheck /> : <IconX />}
                       <h3 className="text-lg text-stone-100">{stack.name}</h3>
                       <Btn
                         onClick={() => deleteStack.mutate(stack.id)}
                         intent="danger"
                         size="sm"
+                        icon={IconTrash}
+                        square
                       >
-                        delete
+                        Delete
                       </Btn>
                     </div>
                     <div className="ml-6 flex flex-col gap-3">
