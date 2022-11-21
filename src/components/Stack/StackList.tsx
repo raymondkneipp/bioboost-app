@@ -40,11 +40,13 @@ export const StackList = () => {
                         Delete
                       </Btn>
                     </div>
-                    <div className="ml-6 flex flex-col gap-3">
-                      {stack.habits.map((habit) => (
-                        <HabitItem {...habit} key={habit.id} />
-                      ))}
-                    </div>
+                    {stack.habits.length > 0 && (
+                      <div className="ml-6 flex flex-col gap-3">
+                        {stack.habits.map((habit) => (
+                          <HabitItem {...habit} key={habit.id} />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               })}
