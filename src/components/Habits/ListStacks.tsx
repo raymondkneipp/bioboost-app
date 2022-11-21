@@ -18,7 +18,13 @@ export const ListStacks = () => {
               {stacks.data.map((stack) => {
                 const stackCompleted = stack.habits.every((habit) => {
                   if (habit.completedDates.length > 0) {
-                    return habit.completedDates.every((date) => isToday(date));
+                    if (
+                      habit.completedDates.filter((date) => isToday(date))
+                        .length >= 1
+                    ) {
+                      return true;
+                    }
+                    return false;
                   }
                   return false;
                 });
