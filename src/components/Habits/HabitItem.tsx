@@ -39,7 +39,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
             } flex h-8 w-8 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-30`}
           >
             <span className="sr-only">
-              {completed ? "unfinish" : "complete"} habit
+              {checked ? "unfinish" : "complete"} habit
             </span>
 
             {checked ? <IconCheck size={18} /> : <IconX size={18} />}
