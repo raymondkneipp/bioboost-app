@@ -1,9 +1,11 @@
 import { router } from "../trpc";
 import { authRouter } from "./auth";
-import { habitsRouter } from "./habits";
+import { habitRouter } from "./habit";
+import { stackRouter } from "./stack";
 
 export const appRouter = router({
-  habits: habitsRouter,
+  habit: habitRouter,
+  stack: stackRouter,
   auth: authRouter,
 });
 

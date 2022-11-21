@@ -11,7 +11,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { trpc } from "utils/trpc";
 
 export const StackCreate = () => {
-  const addStack = trpc.habits.addStack.useMutation();
+  const addStack = trpc.stack.addStack.useMutation();
 
   const {
     handleSubmit,

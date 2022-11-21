@@ -4,8 +4,8 @@ import { isToday } from "date-fns";
 import { trpc } from "utils/trpc";
 
 export const StackList = () => {
-  const stacks = trpc.habits.getAll.useQuery();
-  const deleteStack = trpc.habits.deleteStack.useMutation();
+  const stacks = trpc.stack.getAll.useQuery();
+  const deleteStack = trpc.stack.deleteStack.useMutation();
 
   return (
     <Card>

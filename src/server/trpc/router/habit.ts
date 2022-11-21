@@ -1,39 +1,12 @@
 import {
   completeHabitValidator,
-  createStackValidator,
   deleteHabitValidator,
-  deleteStackValidator,
   incompleteHabitValidator,
 } from "@validators";
 import { isSameDay } from "date-fns";
 import { publicProcedure, router } from "../trpc";
 
-export const habitsRouter = router({
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.stack.findMany({
-      include: {
-        habits: {
-          orderBy: {
-            name: "asc",
-          },
-        },
-      },
-    });
-  }),
-  addStack: publicProcedure
-    .input(createStackValidator)
-    .mutation(({ ctx, input }) => {
-      return ctx.prisma.stack.create({
-        data: {
-          name: input.name,
-          habits: {
-            createMany: {
-              data: input.habits,
-            },
-          },
-        },
-      });
-    }),
+export const habitRouter = router({
   completeHabit: publicProcedure
     .input(completeHabitValidator)
     .mutation(({ ctx, input }) => {
@@ -75,15 +48,6 @@ export const habitsRouter = router({
     .input(deleteHabitValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.habit.delete({
-        where: {
-          id: input,
-        },
-      });
-    }),
-  deleteStack: publicProcedure
-    .input(deleteStackValidator)
-    .mutation(({ ctx, input }) => {
-      return ctx.prisma.stack.delete({
         where: {
           id: input,
         },

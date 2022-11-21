@@ -7,11 +7,12 @@ import { Fragment } from "react";
 import { trpc } from "utils/trpc";
 
 export const HabitItem = ({ id, name, completedDates }: Habit) => {
-  const completeHabit = trpc.habits.completeHabit.useMutation();
-  const incompleteHabit = trpc.habits.incompleteHabit.useMutation();
-  const deleteHabit = trpc.habits.deleteHabit.useMutation();
+  const completeHabit = trpc.habit.completeHabit.useMutation();
+  const incompleteHabit = trpc.habit.incompleteHabit.useMutation();
+  const deleteHabit = trpc.habit.deleteHabit.useMutation();
 
   const completed = completedDates.find((date) => isToday(date)) ? true : false;
+
   return (
     <div className="flex items-center gap-3">
       <Switch name="terms-of-service" defaultChecked={completed} as={Fragment}>
