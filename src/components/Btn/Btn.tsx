@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const buttonStyles = cva(
-  "rounded-full font-medium transition flex items-center gap-1",
+  "rounded-xl font-medium transition flex items-center gap-1",
   {
     variants: {
       intent: {
