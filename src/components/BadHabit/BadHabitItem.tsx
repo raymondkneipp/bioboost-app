@@ -17,8 +17,10 @@ export const BadHabitItem = ({
 
   const fail = trpc.badHabit.fail.useMutation();
   const success = trpc.badHabit.success.useMutation();
+  const deleteHabit = trpc.badHabit.delete.useMutation();
 
-  const isLoading = fail.isLoading || success.isLoading;
+  const isLoading =
+    fail.isLoading || success.isLoading || deleteHabit.isLoading;
 
   return (
     <div className="flex flex-col gap-3">
@@ -66,7 +68,7 @@ export const BadHabitItem = ({
         <h3 className="flex-1 text-lg text-stone-100">{name}</h3>
         {edit && (
           <Btn
-            // onClick={() => deleteStack.mutate(id)}
+            onClick={() => deleteHabit.mutate(id)}
             intent="danger"
             size="sm"
             icon={IconTrash}

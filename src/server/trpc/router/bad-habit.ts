@@ -1,6 +1,7 @@
 import { isSameDay } from "date-fns";
 import {
   createBadHabitValidator,
+  deleteBadHabitValidator,
   failHabitValidator,
   successHabitValidator,
 } from "validators/bad-habit";
@@ -57,6 +58,15 @@ export const badHabitRouter = router({
               (day) => !isSameDay(day, input.date)
             ),
           },
+        },
+      });
+    }),
+  delete: publicProcedure
+    .input(deleteBadHabitValidator)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.badHabit.delete({
+        where: {
+          id: input,
         },
       });
     }),

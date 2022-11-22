@@ -13,3 +13,6 @@ export type FailHabitInputType = z.infer<typeof failHabitValidator>;
 
 export const successHabitValidator = failHabitValidator;
 export type SuccessHabitInputType = z.infer<typeof successHabitValidator>;
+
+export const deleteBadHabitValidator = z.string();
+export type DeleteBadHabitInputType = z.infer<typeof deleteBadHabitValidator>;
