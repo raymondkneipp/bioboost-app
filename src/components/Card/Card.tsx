@@ -5,7 +5,7 @@ type Props = {
 };
 export const Card = ({ children }: Props) => {
   return (
-    <article className="flex flex-col gap-3 rounded-xl border border-stone-800 p-3">
+    <article className="flex flex-col gap-3 rounded-xl border border-stone-700 p-3">
       {children}
     </article>
   );

@@ -55,7 +55,7 @@ export const StackCreate = () => {
           register={register("name")}
         />
 
-        <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-stone-800 p-3">
+        <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-stone-700 p-3">
           {fields.map((field, index) => (
             <div
               key={field.id}
