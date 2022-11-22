@@ -13,9 +13,9 @@ const buttonStyles = cva(
         danger: "bg-white/0 text-red-400 hover:bg-white/10",
       },
       size: {
-        sm: "py-0 px-1.5",
-        md: "py-1.5 px-3",
-        lg: "py-3 px-6",
+        sm: "py-0 px-1.5 text-sm",
+        md: "py-1.5 px-3 text-base",
+        lg: "py-3 px-6 text-lg",
       },
       square: {
         true: "w-8 h-8 flex items-center justify-center",
