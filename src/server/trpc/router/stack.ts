@@ -1,4 +1,10 @@
-import { createStackValidator, deleteStackValidator } from "@validators";
+import {
+  completeStackValidator,
+  createStackValidator,
+  deleteStackValidator,
+  incompleteStackValidator,
+} from "@validators";
+import { isSameDay } from "date-fns";
 import { publicProcedure, router } from "../trpc";
 
 export const stackRouter = router({
@@ -35,5 +41,45 @@ export const stackRouter = router({
           id: input,
         },
       });
+    }),
+  completeStack: publicProcedure
+    .input(completeStackValidator)
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.habit.updateMany({
+        where: {
+          stackId: input.id,
+        },
+        data: {
+          completedDates: {
+            push: input.date,
+          },
+        },
+      });
+    }),
+  incompleteStack: publicProcedure
+    .input(incompleteStackValidator)
+    .mutation(async ({ ctx, input }) => {
+      const habits = await ctx.prisma.habit.findMany({
+        where: {
+          stackId: input.id,
+        },
+      });
+
+      return Promise.all(
+        habits.map(async (habit) => {
+          return await ctx.prisma.habit.update({
+            where: {
+              id: habit.id,
+            },
+            data: {
+              completedDates: {
+                set: habit?.completedDates.filter(
+                  (date) => !isSameDay(date, input.date)
+                ),
+              },
+            },
+          });
+        })
+      );
     }),
 });

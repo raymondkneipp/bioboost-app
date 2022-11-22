@@ -15,7 +15,7 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
 
   return (
     <div className="flex items-center gap-3">
-      <Switch defaultChecked={completed} as={Fragment}>
+      <Switch checked={completed} as={Fragment}>
         {({ checked }) => (
           <button
             disabled={incompleteHabit.isLoading || completeHabit.isLoading}
