@@ -6,9 +6,7 @@
   - [ ] Order habits
   - [ ] Frequency (weekly, on these days, etc.)
   - [ ] Time to begin / complete
-- [ ] Rules
-  - ex. no alcohol, no sugar, no electronics past X time
-  - "X" if broke rule
+- [x] Bad Habits
 - [ ] Goals
   - [ ] Short term goals (within 2 months)
   - [ ] Medium term goals (within 2 years)
