@@ -89,6 +89,7 @@ export const StackCreate = () => {
             intent="secondary"
             type="button"
             icon={IconPlus}
+            size="sm"
           >
             Add Habbit
           </Btn>
