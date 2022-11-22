@@ -6,8 +6,6 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -18,9 +16,6 @@ const Home: NextPage = () => {
       <Navbar />
       <main className="container flex flex-col items-center justify-center py-6">
         <Hero />
-        <p className="text-2xl">
-          {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-        </p>
         <AuthShowcase />
       </main>
       <Footer />
