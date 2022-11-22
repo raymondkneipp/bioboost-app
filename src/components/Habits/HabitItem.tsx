@@ -56,7 +56,7 @@ export const HabitItem = ({
               }}
               className={`${
                 checked
-                  ? "bg-purple-400 text-stone-900 hover:bg-purple-300"
+                  ? "bg-green-400 text-stone-900 hover:bg-green-300"
                   : "bg-stone-800 text-stone-100 hover:bg-stone-700"
               } flex h-8 w-8 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-30`}
             >
