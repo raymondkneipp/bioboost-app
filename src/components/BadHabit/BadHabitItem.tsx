@@ -59,7 +59,7 @@ export const BadHabitItem = ({
                   {checked ? "unfinish" : "complete"} stack
                 </span>
 
-                {checked ? <IconX size={18} /> : <IconCheck size={18} />}
+                {checked ? <IconCheck size={18} /> : <IconX size={18} />}
               </button>
             )}
           </Switch>
