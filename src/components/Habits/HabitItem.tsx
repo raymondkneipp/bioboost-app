@@ -1,7 +1,12 @@
 import { Btn } from "@components";
 import { Switch } from "@headlessui/react";
 import { Habit } from "@prisma/client";
-import { IconCheck, IconCircleDotted, IconTrash, IconX } from "@tabler/icons";
+import {
+  IconCheck,
+  IconCircleDotted,
+  IconMinus,
+  IconTrash,
+} from "@tabler/icons";
 import { isToday, startOfToday } from "date-fns";
 import { Fragment } from "react";
 import { trpc } from "utils/trpc";
@@ -27,8 +32,8 @@ export const HabitItem = ({
     <div className="flex items-center gap-3">
       {isLoading ? (
         <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-800">
-          <span className="text-stonr-100 animate-spin">
-            <IconCircleDotted />
+          <span className="animate-spin text-stone-100">
+            <IconCircleDotted size={18} />
           </span>
         </div>
       ) : (
@@ -59,7 +64,7 @@ export const HabitItem = ({
                 {checked ? "unfinish" : "complete"} habit
               </span>
 
-              {checked ? <IconCheck size={18} /> : <IconX size={18} />}
+              {checked ? <IconCheck size={18} /> : <IconMinus size={18} />}
             </button>
           )}
         </Switch>
