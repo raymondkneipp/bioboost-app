@@ -10,7 +10,8 @@ export const StackItem = ({
   id,
   name,
   habits,
-}: Stack & { habits: Habit[] }) => {
+  edit,
+}: Stack & { habits: Habit[] } & { edit: boolean }) => {
   const deleteStack = trpc.stack.deleteStack.useMutation();
   const completeStack = trpc.stack.completeStack.useMutation();
   const incompleteStack = trpc.stack.incompleteStack.useMutation();
@@ -71,21 +72,23 @@ export const StackItem = ({
         )}
 
         <h3 className="text-lg text-stone-100">{name}</h3>
-        <Btn
-          onClick={() => deleteStack.mutate(id)}
-          intent="danger"
-          size="sm"
-          icon={IconTrash}
-          square
-          disabled={isLoading}
-        >
-          Delete
-        </Btn>
+        {edit && (
+          <Btn
+            onClick={() => deleteStack.mutate(id)}
+            intent="danger"
+            size="sm"
+            icon={IconTrash}
+            square
+            disabled={isLoading}
+          >
+            Delete
+          </Btn>
+        )}
       </div>
       {habits.length > 0 && (
         <div className="ml-12 flex flex-col gap-3">
           {habits.map((habit) => (
-            <HabitItem {...habit} key={habit.id} />
+            <HabitItem {...habit} edit={edit} key={habit.id} />
           ))}
         </div>
       )}

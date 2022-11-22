@@ -6,7 +6,12 @@ import { isToday, startOfToday } from "date-fns";
 import { Fragment } from "react";
 import { trpc } from "utils/trpc";
 
-export const HabitItem = ({ id, name, completedDates }: Habit) => {
+export const HabitItem = ({
+  id,
+  name,
+  completedDates,
+  edit,
+}: Habit & { edit: boolean }) => {
   const completeHabit = trpc.habit.completeHabit.useMutation();
   const incompleteHabit = trpc.habit.incompleteHabit.useMutation();
   const deleteHabit = trpc.habit.deleteHabit.useMutation();
@@ -61,16 +66,18 @@ export const HabitItem = ({ id, name, completedDates }: Habit) => {
       )}
 
       <span className="flex-1 text-stone-100">{name}</span>
-      <Btn
-        onClick={() => deleteHabit.mutate(id)}
-        intent="danger"
-        size="sm"
-        square
-        icon={IconTrash}
-        disabled={isLoading}
-      >
-        Delete
-      </Btn>
+      {edit && (
+        <Btn
+          onClick={() => deleteHabit.mutate(id)}
+          intent="danger"
+          size="sm"
+          square
+          icon={IconTrash}
+          disabled={isLoading}
+        >
+          Delete
+        </Btn>
+      )}
     </div>
   );
 };
