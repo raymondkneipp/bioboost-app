@@ -1,4 +1,5 @@
 import { Brand, Btn } from "@components";
+import { IconLogin, IconUserPlus } from "@tabler/icons";
 import Link from "next/link";
 
 export const Navbar = () => {
@@ -9,10 +10,12 @@ export const Navbar = () => {
       </Link>
 
       <div className="flex items-center gap-6">
-        <Btn href="/dashboard" intent="secondary">
+        <Btn href="/dashboard" intent="secondary" icon={IconLogin}>
           Login
         </Btn>
-        <Btn href="/dashboard">Sign Up</Btn>
+        <Btn href="/dashboard" icon={IconUserPlus}>
+          Sign Up
+        </Btn>
       </div>
     </nav>
   );
