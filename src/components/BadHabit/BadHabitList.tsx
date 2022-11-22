@@ -1,18 +1,24 @@
-import { Card, CardHeader, Empty, StackCreate, StackItem } from "@components";
+import {
+  BadHabitCreate,
+  BadHabitItem,
+  Card,
+  CardHeader,
+  Empty,
+} from "@components";
 import { Switch } from "@headlessui/react";
-import { IconChecklist, IconEdit } from "@tabler/icons";
+import { IconArticleOff, IconEdit } from "@tabler/icons";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
 
-export const StackList = () => {
-  const stacks = trpc.stack.getAll.useQuery();
+export const BadHabitList = () => {
+  const badHabits = trpc.badHabit.getAll.useQuery();
 
   const [editable, setEditable] = useState(false);
 
   return (
     <Card>
       <div className="flex items-center justify-between gap-3">
-        <CardHeader icon={IconChecklist}>Habit Stacks</CardHeader>
+        <CardHeader icon={IconArticleOff}>Bad Habits</CardHeader>
 
         <Switch
           checked={editable}
@@ -28,26 +34,23 @@ export const StackList = () => {
         </Switch>
       </div>
 
-      {stacks.data ? (
+      {badHabits.data ? (
         <>
-          {stacks.data.length > 0 ? (
+          {badHabits.data.length > 0 ? (
             <>
-              {stacks.data.map((stack) => {
-                return <StackItem {...stack} edit={editable} />;
+              {badHabits.data.map((badHabit) => {
+                return <BadHabitItem {...badHabit} edit={editable} />;
               })}
             </>
           ) : (
-            <Empty
-              message="No Habit Stacks"
-              cta={{ href: "/habits", label: "Create Stack" }}
-            />
+            <Empty message="No Bad Habits" />
           )}
         </>
       ) : (
         "loading..."
       )}
 
-      {editable && <StackCreate />}
+      {editable && <BadHabitCreate />}
     </Card>
   );
 };

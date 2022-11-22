@@ -40,7 +40,7 @@ export const HabitItem = ({
         <Switch checked={completed} as={Fragment}>
           {({ checked }) => (
             <button
-              disabled={incompleteHabit.isLoading || completeHabit.isLoading}
+              disabled={isLoading}
               onClick={() => {
                 if (completed) {
                   incompleteHabit.mutate({

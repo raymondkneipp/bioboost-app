@@ -1,37 +1,24 @@
-import { Btn, HabitItem } from "@components";
+import { Btn } from "@components";
 import { Switch } from "@headlessui/react";
-import { Habit, Stack } from "@prisma/client";
-import {
-  IconCheck,
-  IconCircleDotted,
-  IconMinus,
-  IconTrash,
-} from "@tabler/icons";
+import { BadHabit } from "@prisma/client";
+import { IconCheck, IconCircleDotted, IconTrash, IconX } from "@tabler/icons";
 import { isToday, startOfToday } from "date-fns";
 import { Fragment } from "react";
 import { trpc } from "utils/trpc";
 
-export const StackItem = ({
+export const BadHabitItem = ({
   id,
   name,
-  habits,
+  failedDates,
   edit,
-}: Stack & { habits: Habit[] } & { edit: boolean }) => {
-  const deleteStack = trpc.stack.deleteStack.useMutation();
-  const completeStack = trpc.stack.completeStack.useMutation();
-  const incompleteStack = trpc.stack.incompleteStack.useMutation();
+}: BadHabit & { edit: boolean }) => {
+  const failed =
+    failedDates.filter((day) => isToday(day)).length >= 1 ? true : false;
 
-  const stackCompleted = habits.every((habit) => {
-    if (habit.completedDates.filter((date) => isToday(date)).length >= 1) {
-      return true;
-    }
-    return false;
-  });
+  const fail = trpc.badHabit.fail.useMutation();
+  const success = trpc.badHabit.success.useMutation();
 
-  const isLoading =
-    deleteStack.isLoading ||
-    completeStack.isLoading ||
-    incompleteStack.isLoading;
+  const isLoading = fail.isLoading || success.isLoading;
 
   return (
     <div className="flex flex-col gap-3">
@@ -43,18 +30,18 @@ export const StackItem = ({
             </span>
           </div>
         ) : (
-          <Switch checked={stackCompleted} as={Fragment}>
+          <Switch checked={failed} as={Fragment}>
             {({ checked }) => (
               <button
                 disabled={isLoading}
                 onClick={() => {
-                  if (stackCompleted) {
-                    incompleteStack.mutate({
+                  if (failed) {
+                    success.mutate({
                       id,
                       date: startOfToday(),
                     });
                   } else {
-                    completeStack.mutate({
+                    fail.mutate({
                       id,
                       date: startOfToday(),
                     });
@@ -62,15 +49,15 @@ export const StackItem = ({
                 }}
                 className={`${
                   checked
-                    ? "bg-green-400 text-stone-900 hover:bg-green-300"
-                    : "bg-stone-800 hover:bg-stone-700"
+                    ? "bg-red-400 text-stone-900 hover:bg-red-300"
+                    : "bg-green-400 text-stone-900 hover:bg-green-300"
                 } flex h-8 w-8 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-30`}
               >
                 <span className="sr-only">
                   {checked ? "unfinish" : "complete"} stack
                 </span>
 
-                {checked ? <IconCheck size={18} /> : <IconMinus size={18} />}
+                {checked ? <IconX size={18} /> : <IconCheck size={18} />}
               </button>
             )}
           </Switch>
@@ -79,24 +66,17 @@ export const StackItem = ({
         <h3 className="flex-1 text-lg text-stone-100">{name}</h3>
         {edit && (
           <Btn
-            onClick={() => deleteStack.mutate(id)}
+            // onClick={() => deleteStack.mutate(id)}
             intent="danger"
             size="sm"
             icon={IconTrash}
             square
             disabled={isLoading}
           >
-            Delete Stack
+            Delete
           </Btn>
         )}
       </div>
-      {habits.length > 0 && (
-        <div className="ml-12 flex flex-col gap-3">
-          {habits.map((habit) => (
-            <HabitItem {...habit} edit={edit} key={habit.id} />
-          ))}
-        </div>
-      )}
     </div>
   );
 };

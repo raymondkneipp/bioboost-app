@@ -19,6 +19,14 @@ model Example {
   updatedAt DateTime @updatedAt
 }
 
+model BadHabit {
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  name        String
+  failedDates DateTime[]
+}
+
 model Habit {
   id             String     @id @default(cuid())
   createdAt      DateTime   @default(now())

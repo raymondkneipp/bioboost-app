@@ -31,7 +31,7 @@ export const habitRouter = router({
         select: { completedDates: true },
       });
 
-      return ctx.prisma.habit.update({
+      return await ctx.prisma.habit.update({
         where: {
           id: input.id,
         },
