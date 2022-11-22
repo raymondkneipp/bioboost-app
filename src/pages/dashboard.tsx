@@ -1,14 +1,59 @@
-import { Brand, StackCreate, StackList } from "@components";
+import { Brand, Card, StackCreate, StackList } from "@components";
+import {
+  eachDayOfInterval,
+  endOfWeek,
+  format,
+  isFuture,
+  isToday,
+  startOfToday,
+  startOfWeek,
+} from "date-fns";
 import { type NextPage } from "next";
 
 const Dashboard: NextPage = () => {
+  const today = startOfToday();
+  const week = eachDayOfInterval({
+    start: startOfWeek(today),
+    end: endOfWeek(today),
+  });
   return (
     <div className="flex flex-col gap-6 p-6">
       <Brand />
 
-      <StackList />
+      <Card>
+        <div className="grid grid-cols-7 gap-3">
+          {week.map((day) => (
+            <div
+              className={`rounded-xl p-3 ${
+                isToday(day) ? "bg-stone-800 text-stone-100" : "text-stone-400"
+              }`}
+            >
+              <div>{format(day, "E")}</div>
+              {/* <div>{format(day, "d")}</div> */}
+              <div className="flex items-center gap-3">
+                {isFuture(day) ? (
+                  <div className="h-4 w-4 rounded-xl bg-stone-800"></div>
+                ) : (
+                  <>
+                    {Math.random() >= 0.5 ? (
+                      <div className="h-4 w-4 rounded-xl bg-green-400"></div>
+                    ) : (
+                      <div className="h-4 w-4 rounded-xl bg-red-400"></div>
+                    )}
+                  </>
+                )}
+                <span className="text-sm">Habits</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
 
-      <StackCreate />
+      <div className="grid grid-cols-2 items-start gap-6">
+        <StackList />
+
+        <StackCreate />
+      </div>
     </div>
   );
 };
