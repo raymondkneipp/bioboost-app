@@ -3,13 +3,10 @@ import { cva, VariantProps } from "class-variance-authority";
 import { useId } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
-const inputStyles = cva(
-  "bg-transparent rounded-xl border border-stone-700 px-3 py-1.5 w-full",
-  {
-    variants: {},
-    defaultVariants: {},
-  }
-);
+const inputStyles = cva("bg-stone-800 rounded-xl px-3 py-1.5 w-full", {
+  variants: {},
+  defaultVariants: {},
+});
 
 interface Props
   extends React.InputHTMLAttributes<HTMLInputElement>,

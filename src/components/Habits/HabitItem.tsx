@@ -26,7 +26,7 @@ export const HabitItem = ({
   return (
     <div className="flex items-center gap-3">
       {isLoading ? (
-        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-700">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-800">
           <span className="text-stonr-100 animate-spin">
             <IconCircleDotted />
           </span>
@@ -52,7 +52,7 @@ export const HabitItem = ({
               className={`${
                 checked
                   ? "bg-purple-400 text-stone-900 hover:bg-purple-300"
-                  : "bg-stone-700 text-stone-100 hover:bg-stone-600"
+                  : "bg-stone-800 text-stone-100 hover:bg-stone-700"
               } flex h-8 w-8 items-center justify-center rounded-xl transition disabled:cursor-not-allowed disabled:opacity-30`}
             >
               <span className="sr-only">
