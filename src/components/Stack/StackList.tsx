@@ -1,6 +1,13 @@
-import { Card, CardHeader, Empty, StackCreate, StackItem } from "@components";
+import {
+  Btn,
+  Card,
+  CardHeader,
+  Empty,
+  StackCreate,
+  StackItem,
+} from "@components";
 import { Switch } from "@headlessui/react";
-import { IconChecklist, IconEdit } from "@tabler/icons";
+import { IconChecklist, IconEdit, IconPlus } from "@tabler/icons";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
 
@@ -37,10 +44,15 @@ export const StackList = () => {
               })}
             </>
           ) : (
-            <Empty
-              message="No Habit Stacks"
-              cta={{ href: "/habits", label: "Create Stack" }}
-            />
+            <>
+              {!editable && (
+                <Empty message="No Habit Stacks">
+                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                    Create Habit Stack
+                  </Btn>
+                </Empty>
+              )}
+            </>
           )}
         </>
       ) : (

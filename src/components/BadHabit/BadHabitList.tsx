@@ -1,12 +1,13 @@
 import {
   BadHabitCreate,
   BadHabitItem,
+  Btn,
   Card,
   CardHeader,
   Empty,
 } from "@components";
 import { Switch } from "@headlessui/react";
-import { IconArticleOff, IconEdit } from "@tabler/icons";
+import { IconArticleOff, IconEdit, IconPlus } from "@tabler/icons";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
 
@@ -43,7 +44,15 @@ export const BadHabitList = () => {
               })}
             </>
           ) : (
-            <Empty message="No Bad Habits" />
+            <>
+              {!editable && (
+                <Empty message="No Bad Habits">
+                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                    Add Bad Habbit
+                  </Btn>
+                </Empty>
+              )}
+            </>
           )}
         </>
       ) : (
