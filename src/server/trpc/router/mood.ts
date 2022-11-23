@@ -7,7 +7,7 @@ import { endOfDay, startOfDay } from "date-fns";
 import { publicProcedure, router } from "../trpc";
 
 export const moodRouter = router({
-  getAll: publicProcedure.input(getMoodsValidator).query(({ ctx, input }) => {
+  getDay: publicProcedure.input(getMoodsValidator).query(({ ctx, input }) => {
     return ctx.prisma.mood.findMany({
       where: {
         createdAt: {

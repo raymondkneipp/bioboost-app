@@ -5,6 +5,7 @@ export * from "./Brand";
 export * from "./Btn/Btn";
 export * from "./Calendar/Indicators/BadHabitIndicator";
 export * from "./Calendar/Indicators/Indicator";
+export * from "./Calendar/Indicators/MoodIndicator";
 export * from "./Calendar/Indicators/StackIndicator";
 export * from "./Calendar/WeekView";
 export * from "./Card";

@@ -8,7 +8,7 @@ import { MoodCreate } from "./MoodCreate";
 import { MoodItem } from "./Moodtem";
 
 export const MoodList = () => {
-  const moods = trpc.mood.getAll.useQuery(startOfToday());
+  const moods = trpc.mood.getDay.useQuery(startOfToday());
 
   const [editable, setEditable] = useState(false);
 

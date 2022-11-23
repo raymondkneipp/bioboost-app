@@ -1,7 +1,7 @@
 import {
   BadHabitIndicator,
   Card,
-  Indicator,
+  MoodIndicator,
   StackIndicator,
 } from "@components";
 import {
@@ -34,12 +34,7 @@ export const WeekView = () => {
               <div>{format(day, "E")}</div>
               <BadHabitIndicator day={day} />
               <StackIndicator day={day} />
-              <Indicator name="test" intent="success" />
-              <Indicator name="test" intent="good" />
-              <Indicator name="test" intent="okay" />
-              <Indicator name="test" intent="poor" />
-              <Indicator name="test" intent="bad" />
-              <Indicator name="test" intent="fail" />
+              <MoodIndicator day={day} />
             </div>
           );
         })}
