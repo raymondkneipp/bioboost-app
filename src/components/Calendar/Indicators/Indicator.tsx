@@ -7,7 +7,7 @@ const indicatorStyles = cva("h-4 w-4 rounded-xl", {
       okay: "bg-yellow-400",
       bad: "bg-orange-400",
       fail: "bg-red-400",
-      na: "bg-stone-800",
+      na: "bg-stone-700",
     },
   },
 });

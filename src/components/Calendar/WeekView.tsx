@@ -22,9 +22,7 @@ export const WeekView = () => {
           return (
             <div
               className={`flex flex-col gap-1 rounded-xl p-3 ${
-                isToday(day)
-                  ? "border border-stone-700 text-stone-100"
-                  : "text-stone-400"
+                isToday(day) ? "bg-stone-800 text-stone-100" : "text-stone-400"
               }`}
             >
               <div>{format(day, "E")}</div>
