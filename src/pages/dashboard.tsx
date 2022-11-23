@@ -1,4 +1,10 @@
-import { BadHabitList, Brand, StackList, WeekView } from "@components";
+import {
+  BadHabitList,
+  Brand,
+  MoodList,
+  StackList,
+  WeekView,
+} from "@components";
 import { type NextPage } from "next";
 
 const Dashboard: NextPage = () => {
@@ -8,10 +14,12 @@ const Dashboard: NextPage = () => {
 
       <WeekView />
 
-      <div className="grid grid-cols-2 items-start gap-6">
+      <div className="grid items-start gap-6 md:grid-cols-2">
         <BadHabitList />
 
         <StackList />
+
+        <MoodList />
       </div>
     </div>
   );

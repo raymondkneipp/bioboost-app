@@ -12,7 +12,7 @@
   - [ ] Medium term goals (within 2 years)
   - [ ] Long term goals (2+ years)
   - [ ] SMART goals
-- [ ] Mood
+- [x] Mood
   - "great", "good", "okay", "bad", "awful"
   - ![](./public/mood.png)
   - additional notes
