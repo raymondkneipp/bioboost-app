@@ -66,6 +66,7 @@ export const BadHabitItem = ({
         )}
 
         <h3 className="flex-1 text-lg text-stone-100">{name}</h3>
+
         {edit && (
           <Btn
             onClick={() => deleteHabit.mutate(id)}
