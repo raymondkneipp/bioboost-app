@@ -1,4 +1,4 @@
-import { BadHabitIndicator, Card } from "@components";
+import { BadHabitIndicator, Card, StackIndicator } from "@components";
 import {
   eachDayOfInterval,
   endOfWeek,
@@ -29,6 +29,7 @@ export const WeekView = () => {
             >
               <div>{format(day, "E")}</div>
               <BadHabitIndicator day={day} />
+              <StackIndicator day={day} />
             </div>
           );
         })}
