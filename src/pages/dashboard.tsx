@@ -15,11 +15,13 @@ const Dashboard: NextPage = () => {
       <WeekView />
 
       <div className="grid items-start gap-6 md:grid-cols-2">
-        <BadHabitList />
+        <div className="flex flex-col gap-6">
+          <BadHabitList />
+
+          <MoodList />
+        </div>
 
         <StackList />
-
-        <MoodList />
       </div>
     </div>
   );
