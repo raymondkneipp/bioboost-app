@@ -4,6 +4,7 @@ import {
   MoodList,
   StackList,
   WeekView,
+  WeightList,
 } from "@components";
 import { type NextPage } from "next";
 
@@ -21,7 +22,10 @@ const Dashboard: NextPage = () => {
           <MoodList />
         </div>
 
-        <StackList />
+        <div className="flex flex-col gap-6">
+          <StackList />
+          <WeightList />
+        </div>
       </div>
     </div>
   );

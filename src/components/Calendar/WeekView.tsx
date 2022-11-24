@@ -12,6 +12,7 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
+import { WeightIndicator } from "./Indicators/WeightIndicator";
 
 export const WeekView = () => {
   const today = startOfToday();
@@ -35,6 +36,7 @@ export const WeekView = () => {
               <BadHabitIndicator day={day} />
               <StackIndicator day={day} />
               <MoodIndicator day={day} />
+              <WeightIndicator day={day} />
             </div>
           );
         })}

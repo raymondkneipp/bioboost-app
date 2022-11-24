@@ -1,21 +1,20 @@
 import { Btn, Card, CardHeader, Empty } from "@components";
 import { Switch } from "@headlessui/react";
-import { IconEdit, IconMoodHappy, IconPlus } from "@tabler/icons";
-import { startOfToday } from "date-fns";
+import { IconEdit, IconPlus, IconScaleOutline } from "@tabler/icons";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
-import { MoodCreate } from "./MoodCreate";
-import { MoodItem } from "./Moodtem";
+import { WeightAdd } from "./WeightAdd";
+import { WeightItem } from "./WeightItem";
 
-export const MoodList = () => {
-  const moods = trpc.mood.getDay.useQuery(startOfToday());
+export const WeightList = () => {
+  const weights = trpc.weight.getAll.useQuery();
 
   const [editable, setEditable] = useState(false);
 
   return (
     <Card>
       <div className="flex items-center justify-between gap-3">
-        <CardHeader icon={IconMoodHappy}>Mood</CardHeader>
+        <CardHeader icon={IconScaleOutline}>Weight</CardHeader>
 
         <Switch
           checked={editable}
@@ -31,12 +30,14 @@ export const MoodList = () => {
         </Switch>
       </div>
 
-      {moods.data ? (
+      {weights.data ? (
         <>
-          {moods.data.length > 0 ? (
+          {weights.data.length > 0 ? (
             <>
-              {moods.data.map((mood) => {
-                return <MoodItem {...mood} edit={editable} key={mood.id} />;
+              {weights.data.slice(0, 3).map((weight) => {
+                return (
+                  <WeightItem {...weight} edit={editable} key={weight.id} />
+                );
               })}
             </>
           ) : (
@@ -44,7 +45,7 @@ export const MoodList = () => {
               {!editable && (
                 <Empty message="No Data">
                   <Btn icon={IconPlus} onClick={() => setEditable(true)}>
-                    Log Mood
+                    Log Weight
                   </Btn>
                 </Empty>
               )}
@@ -55,7 +56,7 @@ export const MoodList = () => {
         "loading..."
       )}
 
-      {editable && <MoodCreate />}
+      {editable && <WeightAdd />}
     </Card>
   );
 };
