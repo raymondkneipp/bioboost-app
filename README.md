@@ -21,7 +21,7 @@
   - List things you are grateful for
   - Yearly, monthly self reflection journal
 - [ ] Water tracker
-- [ ] Weight tracker
+- [x] Weight tracker
 - [ ] Sleep tracker
   - No electronics past X
 - [ ] Caffeine tracker
