@@ -1,12 +1,7 @@
-import { Btn, HabitItem } from "@components";
+import { Btn, HabitItem, Spinner } from "@components";
 import { Switch } from "@headlessui/react";
 import { Habit, Stack } from "@prisma/client";
-import {
-  IconCheck,
-  IconCircleDotted,
-  IconMinus,
-  IconTrash,
-} from "@tabler/icons";
+import { IconCheck, IconMinus, IconTrash } from "@tabler/icons";
 import { isToday, startOfToday } from "date-fns";
 import { Fragment } from "react";
 import { trpc } from "utils/trpc";
@@ -37,11 +32,7 @@ export const StackItem = ({
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         {isLoading ? (
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-800">
-            <span className="animate-spin text-stone-100">
-              <IconCircleDotted size={18} />
-            </span>
-          </div>
+          <Spinner />
         ) : (
           <Switch checked={stackCompleted} as={Fragment}>
             {({ checked }) => (

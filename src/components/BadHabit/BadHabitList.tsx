@@ -5,6 +5,7 @@ import {
   Card,
   CardHeader,
   Empty,
+  Spinner,
 } from "@components";
 import { Switch } from "@headlessui/react";
 import { IconArticleOff, IconEdit, IconPlus } from "@tabler/icons";
@@ -56,7 +57,7 @@ export const BadHabitList = () => {
           )}
         </>
       ) : (
-        "loading..."
+        <Spinner />
       )}
 
       {editable && <BadHabitCreate />}

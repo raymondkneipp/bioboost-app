@@ -16,6 +16,8 @@ export * from "./Habit/HabitItem";
 export * from "./Hero";
 export * from "./Input";
 export * from "./Label";
+export * from "./Loading/LoadingPage";
+export * from "./Loading/Spinner";
 export * from "./Logo";
 export * from "./Mood/MoodList";
 export * from "./Navbar";

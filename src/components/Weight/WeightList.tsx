@@ -1,4 +1,4 @@
-import { Btn, Card, CardHeader, Empty } from "@components";
+import { Btn, Card, CardHeader, Empty, Spinner } from "@components";
 import { Switch } from "@headlessui/react";
 import { IconEdit, IconPlus, IconScaleOutline } from "@tabler/icons";
 import { useState } from "react";
@@ -53,7 +53,7 @@ export const WeightList = () => {
           )}
         </>
       ) : (
-        "loading..."
+        <Spinner />
       )}
 
       {editable && <WeightAdd />}

@@ -1,4 +1,4 @@
-import { Btn, Card, CardHeader, Empty } from "@components";
+import { Btn, Card, CardHeader, Empty, Spinner } from "@components";
 import { Switch } from "@headlessui/react";
 import { IconEdit, IconMoodHappy, IconPlus } from "@tabler/icons";
 import { startOfToday } from "date-fns";
@@ -52,7 +52,7 @@ export const MoodList = () => {
           )}
         </>
       ) : (
-        "loading..."
+        <Spinner />
       )}
 
       {editable && <MoodCreate />}

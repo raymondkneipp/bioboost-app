@@ -1,6 +1,6 @@
-import { Btn } from "@components";
+import { Btn, Spinner } from "@components";
 import { Mood } from "@prisma/client";
-import { IconCircleDotted, IconTrash } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons";
 import { format } from "date-fns";
 import React from "react";
 import { trpc } from "utils/trpc";
@@ -22,11 +22,7 @@ export const MoodItem = ({
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
         {isLoading ? (
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-stone-800">
-            <span className="animate-spin text-stone-100">
-              <IconCircleDotted size={18} />
-            </span>
-          </div>
+          <Spinner />
         ) : (
           <div
             className={`flex h-8 w-8 items-center justify-center rounded-xl text-stone-900 ${bg}`}

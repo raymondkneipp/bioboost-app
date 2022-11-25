@@ -1,4 +1,4 @@
-import { Footer, Hero, Navbar } from "@components";
+import { Footer, Hero, LoadingPage, Navbar } from "@components";
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   }, [router, sessionData]);
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <LoadingPage />;
   }
 
   if (status === "authenticated") {

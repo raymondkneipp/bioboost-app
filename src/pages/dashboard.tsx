@@ -2,6 +2,7 @@ import {
   BadHabitList,
   Brand,
   Btn,
+  LoadingPage,
   MoodList,
   StackList,
   WeekView,
@@ -15,7 +16,7 @@ import { useEffect } from "react";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
-  const { data: sessionData } = useSession();
+  const { data: sessionData, status } = useSession();
 
   useEffect(() => {
     if (!sessionData) {
@@ -23,8 +24,12 @@ const Dashboard: NextPage = () => {
     }
   }, [router, sessionData]);
 
-  if (!sessionData) {
-    return <p>Loading...</p>;
+  if (status === "loading") {
+    return <LoadingPage />;
+  }
+
+  if (status === "unauthenticated") {
+    return null;
   }
 
   return (

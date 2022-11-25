@@ -3,6 +3,7 @@ import {
   Card,
   CardHeader,
   Empty,
+  Spinner,
   StackCreate,
   StackItem,
 } from "@components";
@@ -56,7 +57,7 @@ export const StackList = () => {
           )}
         </>
       ) : (
-        "loading..."
+        <Spinner />
       )}
 
       {editable && <StackCreate />}
