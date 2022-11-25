@@ -11,6 +11,7 @@ export * from "./Calendar/WeekView";
 export * from "./Card";
 export * from "./Empty";
 export * from "./Error";
+export * from "./Features/Features";
 export * from "./Footer";
 export * from "./Habit/HabitItem";
 export * from "./Hero";

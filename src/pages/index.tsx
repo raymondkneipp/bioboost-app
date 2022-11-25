@@ -1,4 +1,4 @@
-import { Footer, Hero, LoadingPage, Navbar } from "@components";
+import { Features, Footer, Hero, LoadingPage, Navbar } from "@components";
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -27,6 +27,7 @@ const Home: NextPage = () => {
       <Navbar />
       <main className="container flex flex-col items-center justify-center py-6">
         <Hero />
+        <Features />
       </main>
       <Footer />
     </>
