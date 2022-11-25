@@ -1,5 +1,4 @@
 import { Btn } from "@components";
-import { IconPlayerPlay } from "@tabler/icons";
 
 export const Hero = () => {
   return (
@@ -11,7 +10,7 @@ export const Hero = () => {
         harum numquam corporis sint reiciendis aspernatur, maxime placeat enim
         eum pariatur possimus voluptate?
       </p>
-      <Btn href="/dashboard" size="lg" icon={IconPlayerPlay}>
+      <Btn href="/dashboard" size="lg">
         Get Started
       </Btn>
       <div className="mt-12 flex aspect-video w-full items-center justify-center rounded-xl bg-stone-800 text-stone-400">

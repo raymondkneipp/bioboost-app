@@ -1,5 +1,6 @@
 import { Brand, Btn } from "@components";
 import { IconLogin, IconUserPlus } from "@tabler/icons";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 export const Navbar = () => {
@@ -10,10 +11,10 @@ export const Navbar = () => {
       </Link>
 
       <div className="flex items-center gap-6">
-        <Btn href="/dashboard" intent="secondary" icon={IconLogin}>
+        <Btn onClick={() => signIn()} intent="secondary" icon={IconLogin}>
           Login
         </Btn>
-        <Btn href="/dashboard" icon={IconUserPlus}>
+        <Btn onClick={() => signIn()} icon={IconUserPlus}>
           Sign Up
         </Btn>
       </div>
