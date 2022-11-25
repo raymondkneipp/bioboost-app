@@ -8,7 +8,7 @@ import {
   Spinner,
 } from "@components";
 import { Switch } from "@headlessui/react";
-import { IconArticleOff, IconEdit, IconPlus } from "@tabler/icons";
+import { IconCircleOff, IconEdit, IconPlus } from "@tabler/icons";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
 
@@ -20,7 +20,7 @@ export const BadHabitList = () => {
   return (
     <Card>
       <div className="flex items-center justify-between gap-3">
-        <CardHeader icon={IconArticleOff}>Bad Habits</CardHeader>
+        <CardHeader icon={IconCircleOff}>Bad Habits</CardHeader>
 
         <Switch
           checked={editable}
