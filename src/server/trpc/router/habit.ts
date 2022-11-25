@@ -4,10 +4,10 @@ import {
   incompleteHabitValidator,
 } from "@validators";
 import { isSameDay } from "date-fns";
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 
 export const habitRouter = router({
-  completeHabit: publicProcedure
+  completeHabit: protectedProcedure
     .input(completeHabitValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.habit.update({
@@ -21,7 +21,7 @@ export const habitRouter = router({
         },
       });
     }),
-  incompleteHabit: publicProcedure
+  incompleteHabit: protectedProcedure
     .input(incompleteHabitValidator)
     .mutation(async ({ ctx, input }) => {
       const habit = await ctx.prisma.habit.findUnique({
@@ -44,7 +44,7 @@ export const habitRouter = router({
         },
       });
     }),
-  deleteHabit: publicProcedure
+  deleteHabit: protectedProcedure
     .input(deleteHabitValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.habit.delete({

@@ -4,44 +4,56 @@ import {
   getWeightValidator,
 } from "@validators";
 import { endOfDay, startOfDay } from "date-fns";
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 
 export const weightRouter = router({
-  getLatest: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.weight.findFirst({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }),
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.weight.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }),
-  getDay: publicProcedure.input(getWeightValidator).query(({ ctx, input }) => {
+  getLatest: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.weight.findFirst({
       where: {
-        createdAt: {
-          gte: startOfDay(input),
-          lt: endOfDay(input),
-        },
+        userId: ctx.session.user.id,
       },
       orderBy: {
         createdAt: "desc",
       },
     });
   }),
-  add: publicProcedure.input(addWeightValidator).mutation(({ ctx, input }) => {
-    return ctx.prisma.weight.create({
-      data: {
-        kilograms: input.kilograms,
+  getAll: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.weight.findMany({
+      where: {
+        userId: ctx.session.user.id,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
   }),
-  delete: publicProcedure
+  getDay: protectedProcedure
+    .input(getWeightValidator)
+    .query(({ ctx, input }) => {
+      return ctx.prisma.weight.findFirst({
+        where: {
+          userId: ctx.session.user.id,
+          createdAt: {
+            gte: startOfDay(input),
+            lt: endOfDay(input),
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }),
+  add: protectedProcedure
+    .input(addWeightValidator)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.weight.create({
+        data: {
+          kilograms: input.kilograms,
+          userId: ctx.session.user.id,
+        },
+      });
+    }),
+  delete: protectedProcedure
     .input(deleteWeightValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.weight.delete({

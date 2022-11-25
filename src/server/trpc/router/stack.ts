@@ -5,11 +5,14 @@ import {
   incompleteStackValidator,
 } from "@validators";
 import { isSameDay } from "date-fns";
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 
 export const stackRouter = router({
-  getAll: publicProcedure.query(({ ctx }) => {
+  getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.stack.findMany({
+      where: {
+        userId: ctx.session.user.id,
+      },
       include: {
         habits: {
           orderBy: {
@@ -19,11 +22,12 @@ export const stackRouter = router({
       },
     });
   }),
-  addStack: publicProcedure
+  addStack: protectedProcedure
     .input(createStackValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.stack.create({
         data: {
+          userId: ctx.session.user.id,
           name: input.name,
           habits: {
             createMany: {
@@ -33,7 +37,7 @@ export const stackRouter = router({
         },
       });
     }),
-  deleteStack: publicProcedure
+  deleteStack: protectedProcedure
     .input(deleteStackValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.stack.delete({
@@ -42,7 +46,7 @@ export const stackRouter = router({
         },
       });
     }),
-  completeStack: publicProcedure
+  completeStack: protectedProcedure
     .input(completeStackValidator)
     .mutation(async ({ ctx, input }) => {
       return await ctx.prisma.habit.updateMany({
@@ -56,7 +60,7 @@ export const stackRouter = router({
         },
       });
     }),
-  incompleteStack: publicProcedure
+  incompleteStack: protectedProcedure
     .input(incompleteStackValidator)
     .mutation(async ({ ctx, input }) => {
       const habits = await ctx.prisma.habit.findMany({

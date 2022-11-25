@@ -5,38 +5,44 @@ import {
   failHabitValidator,
   successHabitValidator,
 } from "validators/bad-habit";
-import { publicProcedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 
 export const badHabitRouter = router({
-  getAll: publicProcedure.query(({ ctx }) => {
+  getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.badHabit.findMany({
+      where: {
+        userId: ctx.session.user.id,
+      },
       orderBy: {
         name: "asc",
       },
     });
   }),
-  add: publicProcedure
+  add: protectedProcedure
     .input(createBadHabitValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.badHabit.create({
         data: {
+          userId: ctx.session.user.id,
           name: input.name,
         },
       });
     }),
-  fail: publicProcedure.input(failHabitValidator).mutation(({ ctx, input }) => {
-    return ctx.prisma.badHabit.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        failedDates: {
-          push: input.date,
+  fail: protectedProcedure
+    .input(failHabitValidator)
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.badHabit.update({
+        where: {
+          id: input.id,
         },
-      },
-    });
-  }),
-  success: publicProcedure
+        data: {
+          failedDates: {
+            push: input.date,
+          },
+        },
+      });
+    }),
+  success: protectedProcedure
     .input(successHabitValidator)
     .mutation(async ({ ctx, input }) => {
       const badHabit = await ctx.prisma.badHabit.findUnique({
@@ -61,7 +67,7 @@ export const badHabitRouter = router({
         },
       });
     }),
-  delete: publicProcedure
+  delete: protectedProcedure
     .input(deleteBadHabitValidator)
     .mutation(({ ctx, input }) => {
       return ctx.prisma.badHabit.delete({
