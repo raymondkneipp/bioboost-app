@@ -3,7 +3,6 @@ import {
   deleteWeightValidator,
   getWeightValidator,
 } from "@validators";
-import { endOfDay, startOfDay } from "date-fns";
 import { protectedProcedure, router } from "../trpc";
 
 export const weightRouter = router({
@@ -34,8 +33,8 @@ export const weightRouter = router({
         where: {
           userId: ctx.session.user.id,
           createdAt: {
-            gte: startOfDay(input),
-            lt: endOfDay(input),
+            gte: input.start,
+            lt: input.end,
           },
         },
         orderBy: {

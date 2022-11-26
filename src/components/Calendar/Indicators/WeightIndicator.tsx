@@ -1,4 +1,5 @@
 import { Indicator } from "@components";
+import { endOfDay, startOfDay } from "date-fns";
 import { trpc } from "utils/trpc";
 
 type Props = {
@@ -6,7 +7,10 @@ type Props = {
 };
 
 export const WeightIndicator = ({ day }: Props) => {
-  const weight = trpc.weight.getDay.useQuery(day);
+  const weight = trpc.weight.getDay.useQuery({
+    start: startOfDay(day),
+    end: endOfDay(day),
+  });
   let color: "na" | "success" = "na";
   let text = "Weight";
   if (weight.data) {
