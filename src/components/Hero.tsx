@@ -1,22 +1,28 @@
 import { Btn } from "@components";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 export const Hero = () => {
   return (
     <div className="container flex min-h-screen max-w-screen-md flex-col items-center justify-center gap-3 text-center">
-      <h1 className="text-5xl font-medium">Health & Productivity Made Easy</h1>
-      <p className="text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-        doloribus, necessitatibus dolorum modi dolores itaque ipsam perspiciatis
-        harum numquam corporis sint reiciendis aspernatur, maxime placeat enim
-        eum pariatur possimus voluptate?
+      <h1 className="text-3xl font-medium text-stone-100 md:text-5xl">
+        Reach Your Goals Faster
+      </h1>
+      <p className="font-merriweather text-stone-300 md:text-lg">
+        Finally, a simple way to not only track your day but also improve it!
+        You can track your daily habits, such as sleep, meals, and workouts to
+        see how they are contributing to your well-being.
       </p>
       <Btn onClick={() => signIn()} size="lg">
         Get Started
       </Btn>
-      <div className="mt-12 flex aspect-video w-full items-center justify-center rounded-xl bg-stone-800 text-stone-400">
-        Screenshot
-      </div>
+      <Image
+        src="/screenshot.png"
+        alt="Bioboost app screenshot"
+        width={800}
+        height={500}
+        className="mt-12 rounded-xl p-2 shadow-2xl shadow-purple-400"
+      />
     </div>
   );
 };

@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Navbar />
-      <main className="container flex flex-col items-center justify-center py-6">
+      <main className="container flex flex-col items-center justify-center gap-6 py-12">
         <Hero />
         <Features />
       </main>

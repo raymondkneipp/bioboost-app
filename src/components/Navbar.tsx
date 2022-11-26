@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <nav className="container flex items-center justify-between py-6">
+    <nav className="container flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
       <Link href="/">
         <Brand />
       </Link>

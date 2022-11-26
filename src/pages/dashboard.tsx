@@ -34,7 +34,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <div className="flex flex-col gap-6 p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
         <Brand />
 
         <Btn onClick={() => signOut()} icon={IconLogout} intent="danger">
@@ -49,11 +49,11 @@ const Dashboard: NextPage = () => {
           <BadHabitList />
 
           <MoodList />
+          <WeightList />
         </div>
 
         <div className="flex flex-col gap-6">
           <StackList />
-          <WeightList />
         </div>
       </div>
     </div>
