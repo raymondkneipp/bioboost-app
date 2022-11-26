@@ -18,9 +18,7 @@ export const BadHabitList = () => {
 
   const [editable, setEditable] = useState(false);
 
-  const [list] = useAutoAnimate<HTMLDivElement>();
-  const [createForm] = useAutoAnimate<HTMLDivElement>();
-  const [cta] = useAutoAnimate<HTMLDivElement>();
+  const [parent] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -41,37 +39,39 @@ export const BadHabitList = () => {
         </Switch>
       </div>
 
-      {badHabits.data ? (
-        <>
-          {badHabits.data.length > 0 ? (
-            <div ref={list} className="flex flex-col gap-3">
-              {badHabits.data.map((badHabit) => {
-                return (
-                  <BadHabitItem
-                    {...badHabit}
-                    edit={editable}
-                    key={badHabit.id}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            <div ref={cta}>
-              {!editable && (
-                <Empty message="No Bad Habits">
-                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
-                    Add Bad Habbit
-                  </Btn>
-                </Empty>
-              )}
-            </div>
-          )}
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <div ref={parent} className="flex flex-col gap-3">
+        {badHabits.data ? (
+          <>
+            {badHabits.data.length > 0 ? (
+              <>
+                {badHabits.data.map((badHabit) => {
+                  return (
+                    <BadHabitItem
+                      {...badHabit}
+                      edit={editable}
+                      key={badHabit.id}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {!editable && (
+                  <Empty message="No Bad Habits">
+                    <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                      Add Bad Habbit
+                    </Btn>
+                  </Empty>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <Spinner />
+        )}
 
-      <div ref={createForm}>{editable && <BadHabitCreate />}</div>
+        {editable && <BadHabitCreate />}
+      </div>
     </Card>
   );
 };

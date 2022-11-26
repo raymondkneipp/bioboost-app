@@ -18,9 +18,7 @@ export const StackList = () => {
 
   const [editable, setEditable] = useState(false);
 
-  const [list] = useAutoAnimate<HTMLDivElement>();
-  const [createForm] = useAutoAnimate<HTMLDivElement>();
-  const [cta] = useAutoAnimate<HTMLDivElement>();
+  const [parent] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -41,31 +39,35 @@ export const StackList = () => {
         </Switch>
       </div>
 
-      {stacks.data ? (
-        <>
-          {stacks.data.length > 0 ? (
-            <div ref={list} className="flex flex-col gap-3">
-              {stacks.data.map((stack) => {
-                return <StackItem {...stack} edit={editable} key={stack.id} />;
-              })}
-            </div>
-          ) : (
-            <div ref={cta}>
-              {!editable && (
-                <Empty message="No Habit Stacks">
-                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
-                    Create Habit Stack
-                  </Btn>
-                </Empty>
-              )}
-            </div>
-          )}
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <div ref={parent} className="flex flex-col gap-3">
+        {stacks.data ? (
+          <>
+            {stacks.data.length > 0 ? (
+              <>
+                {stacks.data.map((stack) => {
+                  return (
+                    <StackItem {...stack} edit={editable} key={stack.id} />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {!editable && (
+                  <Empty message="No Habit Stacks">
+                    <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                      Create Habit Stack
+                    </Btn>
+                  </Empty>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <Spinner />
+        )}
 
-      <div ref={createForm}>{editable && <StackCreate />}</div>
+        {editable && <StackCreate />}
+      </div>
     </Card>
   );
 };

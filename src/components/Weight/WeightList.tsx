@@ -12,9 +12,7 @@ export const WeightList = () => {
 
   const [editable, setEditable] = useState(false);
 
-  const [list] = useAutoAnimate<HTMLDivElement>();
-  const [createForm] = useAutoAnimate<HTMLDivElement>();
-  const [cta] = useAutoAnimate<HTMLDivElement>();
+  const [parent] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -35,33 +33,35 @@ export const WeightList = () => {
         </Switch>
       </div>
 
-      {weights.data ? (
-        <>
-          {weights.data.length > 0 ? (
-            <div ref={list} className="flex flex-col gap-3">
-              {weights.data.slice(0, 3).map((weight) => {
-                return (
-                  <WeightItem {...weight} edit={editable} key={weight.id} />
-                );
-              })}
-            </div>
-          ) : (
-            <div ref={cta}>
-              {!editable && (
-                <Empty message="No Data">
-                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
-                    Log Weight
-                  </Btn>
-                </Empty>
-              )}
-            </div>
-          )}
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <div ref={parent}>
+        {weights.data ? (
+          <>
+            {weights.data.length > 0 ? (
+              <>
+                {weights.data.slice(0, 3).map((weight) => {
+                  return (
+                    <WeightItem {...weight} edit={editable} key={weight.id} />
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {!editable && (
+                  <Empty message="No Data">
+                    <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                      Log Weight
+                    </Btn>
+                  </Empty>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <Spinner />
+        )}
 
-      <div ref={createForm}>{editable && <WeightAdd />}</div>
+        {editable && <WeightAdd />}
+      </div>
     </Card>
   );
 };

@@ -49,11 +49,12 @@ const Dashboard: NextPage = () => {
           <BadHabitList />
 
           <MoodList />
-          <WeightList />
         </div>
 
         <div className="flex flex-col gap-6">
           <StackList />
+
+          <WeightList />
         </div>
       </div>
     </div>

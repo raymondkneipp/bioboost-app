@@ -13,9 +13,7 @@ export const MoodList = () => {
 
   const [editable, setEditable] = useState(false);
 
-  const [list] = useAutoAnimate<HTMLDivElement>();
-  const [createForm] = useAutoAnimate<HTMLDivElement>();
-  const [cta] = useAutoAnimate<HTMLDivElement>();
+  const [parent] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -36,31 +34,33 @@ export const MoodList = () => {
         </Switch>
       </div>
 
-      {moods.data ? (
-        <>
-          {moods.data.length > 0 ? (
-            <div ref={list} className="flex flex-col gap-3">
-              {moods.data.map((mood) => {
-                return <MoodItem {...mood} edit={editable} key={mood.id} />;
-              })}
-            </div>
-          ) : (
-            <div ref={cta}>
-              {!editable && (
-                <Empty message="No Data">
-                  <Btn icon={IconPlus} onClick={() => setEditable(true)}>
-                    Log Mood
-                  </Btn>
-                </Empty>
-              )}
-            </div>
-          )}
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <div ref={parent} className="flex flex-col gap-3">
+        {moods.data ? (
+          <>
+            {moods.data.length > 0 ? (
+              <>
+                {moods.data.map((mood) => {
+                  return <MoodItem {...mood} edit={editable} key={mood.id} />;
+                })}
+              </>
+            ) : (
+              <>
+                {!editable && (
+                  <Empty message="No Data">
+                    <Btn icon={IconPlus} onClick={() => setEditable(true)}>
+                      Log Mood
+                    </Btn>
+                  </Empty>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <Spinner />
+        )}
 
-      <div ref={createForm}>{editable && <MoodCreate />}</div>
+        {editable && <MoodCreate />}
+      </div>
     </Card>
   );
 };
