@@ -36,13 +36,13 @@ export const MoodList = () => {
       </div>
 
       {moods.data ? (
-        <div ref={list} className="flex flex-col gap-3">
+        <>
           {moods.data.length > 0 ? (
-            <>
+            <div ref={list} className="flex flex-col gap-3">
               {moods.data.map((mood) => {
                 return <MoodItem {...mood} edit={editable} key={mood.id} />;
               })}
-            </>
+            </div>
           ) : (
             <>
               {!editable && (
@@ -54,7 +54,7 @@ export const MoodList = () => {
               )}
             </>
           )}
-        </div>
+        </>
       ) : (
         <Spinner />
       )}

@@ -41,13 +41,13 @@ export const StackList = () => {
       </div>
 
       {stacks.data ? (
-        <div ref={list} className="flex flex-col gap-3">
+        <>
           {stacks.data.length > 0 ? (
-            <>
+            <div ref={list} className="flex flex-col gap-3">
               {stacks.data.map((stack) => {
                 return <StackItem {...stack} edit={editable} key={stack.id} />;
               })}
-            </>
+            </div>
           ) : (
             <>
               {!editable && (
@@ -59,7 +59,7 @@ export const StackList = () => {
               )}
             </>
           )}
-        </div>
+        </>
       ) : (
         <Spinner />
       )}
