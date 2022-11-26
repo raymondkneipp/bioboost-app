@@ -33,7 +33,7 @@ export const WeightList = () => {
         </Switch>
       </div>
 
-      <div ref={parent}>
+      <div ref={parent} className="flex flex-col gap-3">
         {weights.data ? (
           <>
             {weights.data.length > 0 ? (
