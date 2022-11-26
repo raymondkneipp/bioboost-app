@@ -15,6 +15,7 @@ export const MoodList = () => {
 
   const [list] = useAutoAnimate<HTMLDivElement>();
   const [createForm] = useAutoAnimate<HTMLDivElement>();
+  const [cta] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -44,7 +45,7 @@ export const MoodList = () => {
               })}
             </div>
           ) : (
-            <>
+            <div ref={cta}>
               {!editable && (
                 <Empty message="No Data">
                   <Btn icon={IconPlus} onClick={() => setEditable(true)}>
@@ -52,7 +53,7 @@ export const MoodList = () => {
                   </Btn>
                 </Empty>
               )}
-            </>
+            </div>
           )}
         </>
       ) : (

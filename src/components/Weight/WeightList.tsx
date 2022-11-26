@@ -14,6 +14,7 @@ export const WeightList = () => {
 
   const [list] = useAutoAnimate<HTMLDivElement>();
   const [createForm] = useAutoAnimate<HTMLDivElement>();
+  const [cta] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -45,7 +46,7 @@ export const WeightList = () => {
               })}
             </div>
           ) : (
-            <>
+            <div ref={cta}>
               {!editable && (
                 <Empty message="No Data">
                   <Btn icon={IconPlus} onClick={() => setEditable(true)}>
@@ -53,7 +54,7 @@ export const WeightList = () => {
                   </Btn>
                 </Empty>
               )}
-            </>
+            </div>
           )}
         </>
       ) : (

@@ -20,6 +20,7 @@ export const BadHabitList = () => {
 
   const [list] = useAutoAnimate<HTMLDivElement>();
   const [createForm] = useAutoAnimate<HTMLDivElement>();
+  const [cta] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -55,7 +56,7 @@ export const BadHabitList = () => {
               })}
             </div>
           ) : (
-            <>
+            <div ref={cta}>
               {!editable && (
                 <Empty message="No Bad Habits">
                   <Btn icon={IconPlus} onClick={() => setEditable(true)}>
@@ -63,7 +64,7 @@ export const BadHabitList = () => {
                   </Btn>
                 </Empty>
               )}
-            </>
+            </div>
           )}
         </>
       ) : (

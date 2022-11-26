@@ -20,6 +20,7 @@ export const StackList = () => {
 
   const [list] = useAutoAnimate<HTMLDivElement>();
   const [createForm] = useAutoAnimate<HTMLDivElement>();
+  const [cta] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -49,7 +50,7 @@ export const StackList = () => {
               })}
             </div>
           ) : (
-            <>
+            <div ref={cta}>
               {!editable && (
                 <Empty message="No Habit Stacks">
                   <Btn icon={IconPlus} onClick={() => setEditable(true)}>
@@ -57,7 +58,7 @@ export const StackList = () => {
                   </Btn>
                 </Empty>
               )}
-            </>
+            </div>
           )}
         </>
       ) : (
