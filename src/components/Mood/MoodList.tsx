@@ -1,4 +1,5 @@
 import { Btn, Card, CardHeader, Empty, Spinner } from "@components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Switch } from "@headlessui/react";
 import { IconEdit, IconMoodHappy, IconPlus } from "@tabler/icons";
 import { startOfToday } from "date-fns";
@@ -11,6 +12,9 @@ export const MoodList = () => {
   const moods = trpc.mood.getDay.useQuery(startOfToday());
 
   const [editable, setEditable] = useState(false);
+
+  const [list] = useAutoAnimate<HTMLDivElement>();
+  const [createForm] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -32,7 +36,7 @@ export const MoodList = () => {
       </div>
 
       {moods.data ? (
-        <>
+        <div ref={list} className="flex flex-col gap-3">
           {moods.data.length > 0 ? (
             <>
               {moods.data.map((mood) => {
@@ -50,12 +54,12 @@ export const MoodList = () => {
               )}
             </>
           )}
-        </>
+        </div>
       ) : (
         <Spinner />
       )}
 
-      {editable && <MoodCreate />}
+      <div ref={createForm}>{editable && <MoodCreate />}</div>
     </Card>
   );
 };

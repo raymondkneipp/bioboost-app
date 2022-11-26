@@ -7,6 +7,7 @@ import {
   Empty,
   Spinner,
 } from "@components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Switch } from "@headlessui/react";
 import { IconCircleOff, IconEdit, IconPlus } from "@tabler/icons";
 import { useState } from "react";
@@ -16,6 +17,9 @@ export const BadHabitList = () => {
   const badHabits = trpc.badHabit.getAll.useQuery();
 
   const [editable, setEditable] = useState(false);
+
+  const [list] = useAutoAnimate<HTMLDivElement>();
+  const [createForm] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -39,7 +43,7 @@ export const BadHabitList = () => {
       {badHabits.data ? (
         <>
           {badHabits.data.length > 0 ? (
-            <>
+            <div ref={list} className="flex flex-col gap-3">
               {badHabits.data.map((badHabit) => {
                 return (
                   <BadHabitItem
@@ -49,7 +53,7 @@ export const BadHabitList = () => {
                   />
                 );
               })}
-            </>
+            </div>
           ) : (
             <>
               {!editable && (
@@ -66,7 +70,7 @@ export const BadHabitList = () => {
         <Spinner />
       )}
 
-      {editable && <BadHabitCreate />}
+      <div ref={createForm}>{editable && <BadHabitCreate />}</div>
     </Card>
   );
 };

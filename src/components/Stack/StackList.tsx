@@ -7,6 +7,7 @@ import {
   StackCreate,
   StackItem,
 } from "@components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Switch } from "@headlessui/react";
 import { IconChecklist, IconEdit, IconPlus } from "@tabler/icons";
 import { useState } from "react";
@@ -16,6 +17,9 @@ export const StackList = () => {
   const stacks = trpc.stack.getAll.useQuery();
 
   const [editable, setEditable] = useState(false);
+
+  const [list] = useAutoAnimate<HTMLDivElement>();
+  const [createForm] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -37,7 +41,7 @@ export const StackList = () => {
       </div>
 
       {stacks.data ? (
-        <>
+        <div ref={list} className="flex flex-col gap-3">
           {stacks.data.length > 0 ? (
             <>
               {stacks.data.map((stack) => {
@@ -55,12 +59,12 @@ export const StackList = () => {
               )}
             </>
           )}
-        </>
+        </div>
       ) : (
         <Spinner />
       )}
 
-      {editable && <StackCreate />}
+      <div ref={createForm}>{editable && <StackCreate />}</div>
     </Card>
   );
 };

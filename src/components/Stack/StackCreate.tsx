@@ -1,4 +1,5 @@
 import { Btn, Input } from "@components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconCheck, IconMinus, IconPlus } from "@tabler/icons";
 import { CreateStackInputType, createStackValidator } from "@validators";
@@ -35,6 +36,8 @@ export const StackCreate = () => {
     reset();
   };
 
+  const [list] = useAutoAnimate<HTMLDivElement>();
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -47,7 +50,10 @@ export const StackCreate = () => {
         register={register("name")}
       />
 
-      <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-stone-700 p-3">
+      <div
+        className="flex w-full flex-col items-start gap-3 rounded-xl border border-stone-700 p-3"
+        ref={list}
+      >
         {fields.map((field, index) => (
           <div
             key={field.id}

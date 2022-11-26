@@ -1,4 +1,5 @@
 import { Btn, Card, CardHeader, Empty, Spinner } from "@components";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Switch } from "@headlessui/react";
 import { IconEdit, IconPlus, IconScaleOutline } from "@tabler/icons";
 import { useState } from "react";
@@ -10,6 +11,9 @@ export const WeightList = () => {
   const weights = trpc.weight.getAll.useQuery();
 
   const [editable, setEditable] = useState(false);
+
+  const [list] = useAutoAnimate<HTMLDivElement>();
+  const [createForm] = useAutoAnimate<HTMLDivElement>();
 
   return (
     <Card>
@@ -33,13 +37,13 @@ export const WeightList = () => {
       {weights.data ? (
         <>
           {weights.data.length > 0 ? (
-            <>
+            <div ref={list} className="flex flex-col gap-3">
               {weights.data.slice(0, 3).map((weight) => {
                 return (
                   <WeightItem {...weight} edit={editable} key={weight.id} />
                 );
               })}
-            </>
+            </div>
           ) : (
             <>
               {!editable && (
@@ -56,7 +60,7 @@ export const WeightList = () => {
         <Spinner />
       )}
 
-      {editable && <WeightAdd />}
+      <div ref={createForm}>{editable && <WeightAdd />}</div>
     </Card>
   );
 };
