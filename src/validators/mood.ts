@@ -1,7 +1,10 @@
 import { Feeling } from "@prisma/client";
 import { z } from "zod";
 
-export const getMoodsValidator = z.date();
+export const getMoodsValidator = z.object({
+  start: z.date(),
+  end: z.date(),
+});
 
 export const createMoodValidator = z.object({
   feeling: z.nativeEnum(Feeling),

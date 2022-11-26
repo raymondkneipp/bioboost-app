@@ -1,5 +1,6 @@
 import { Indicator } from "@components";
 import { Feeling } from "@prisma/client";
+import { endOfDay, startOfDay } from "date-fns";
 import { trpc } from "utils/trpc";
 
 type Props = {
@@ -7,7 +8,10 @@ type Props = {
 };
 
 export const MoodIndicator = ({ day }: Props) => {
-  const moods = trpc.mood.getDay.useQuery(day);
+  const moods = trpc.mood.getDay.useQuery({
+    start: startOfDay(day),
+    end: endOfDay(day),
+  });
   let average = 0;
 
   if (moods.data) {

@@ -2,14 +2,17 @@ import { Btn, Card, CardHeader, Empty, Spinner } from "@components";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Switch } from "@headlessui/react";
 import { IconEdit, IconMoodHappy, IconPlus } from "@tabler/icons";
-import { startOfToday } from "date-fns";
+import { endOfToday, startOfToday } from "date-fns";
 import { useState } from "react";
 import { trpc } from "utils/trpc";
 import { MoodCreate } from "./MoodCreate";
 import { MoodItem } from "./Moodtem";
 
 export const MoodList = () => {
-  const moods = trpc.mood.getDay.useQuery(startOfToday());
+  const moods = trpc.mood.getDay.useQuery({
+    start: startOfToday(),
+    end: endOfToday(),
+  });
 
   const [editable, setEditable] = useState(false);
 
