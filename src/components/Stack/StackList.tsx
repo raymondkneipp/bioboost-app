@@ -41,7 +41,7 @@ export const StackList = () => {
           {stacks.data.length > 0 ? (
             <>
               {stacks.data.map((stack) => {
-                return <StackItem {...stack} edit={editable} />;
+                return <StackItem {...stack} edit={editable} key={stack.id} />;
               })}
             </>
           ) : (

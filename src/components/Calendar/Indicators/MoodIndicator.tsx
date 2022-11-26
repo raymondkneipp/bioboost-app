@@ -11,7 +11,7 @@ export const MoodIndicator = ({ day }: Props) => {
   let average = 0;
 
   if (moods.data) {
-    let total = moods.data.length;
+    const total = moods.data.length;
 
     const greatScore =
       moods.data.filter((mood) => mood.feeling === Feeling.GREAT).length * 6;
