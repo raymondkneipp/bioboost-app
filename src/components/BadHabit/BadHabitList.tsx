@@ -41,7 +41,13 @@ export const BadHabitList = () => {
           {badHabits.data.length > 0 ? (
             <>
               {badHabits.data.map((badHabit) => {
-                return <BadHabitItem {...badHabit} edit={editable} />;
+                return (
+                  <BadHabitItem
+                    {...badHabit}
+                    edit={editable}
+                    key={badHabit.id}
+                  />
+                );
               })}
             </>
           ) : (
