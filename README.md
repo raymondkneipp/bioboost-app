@@ -98,47 +98,51 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/raymondkneipp/bioboost-app.git
    ```
+
 2. Install NPM packages
+
    ```sh
    npm install
    ```
+
 3. Set up the Next Auth DiscordProvider
 
-- Head to [the Applications section in the Discord Developer Portal](https://discord.com/developers/applications), and click on “New Application”
-- In the settings menu, go to “OAuth2 => General”
-- Copy the Client ID and paste it in `DISCORD_CLIENT_ID` in `.env`.
-- Under Client Secret, click “Reset Secret” and copy that string to `DISCORD_CLIENT_SECRET` in `.env`. Be careful as you won’t be able to see this secret again, and resetting it will cause the existing one to expire.
-- Click “Add Redirect” and paste in `<app url>/api/auth/callback/discord` (example for local development: `http://localhost:3000/api/auth/callback/discord`)
-- Save your changes
+   - Head to [the Applications section in the Discord Developer Portal](https://discord.com/developers/applications), and click on “New Application”
+   - In the settings menu, go to “OAuth2 => General”
+   - Copy the Client ID and paste it in `DISCORD_CLIENT_ID` in `.env`.
+   - Under Client Secret, click “Reset Secret” and copy that string to `DISCORD_CLIENT_SECRET` in `.env`. Be careful as you won’t be able to see this secret again, and resetting it will cause the existing one to expire.
+   - Click “Add Redirect” and paste in `<app url>/api/auth/callback/discord` (example for local development: `http://localhost:3000/api/auth/callback/discord`)
+   - Save your changes
 
 4. Set up Next Auth
 
-- Set `NEXTAUTH_SECRET` in `.env` using output from `openssl rand -base64 32`
+   Set `NEXTAUTH_SECRET` in `.env` using output from `openssl rand -base64 32`
 
 5. Connect to Database
 
-- Set `DATABASE_URL` in `.env` to the connection URL provided by your database provider.
+   Set `DATABASE_URL` in `.env` to the connection URL provided by your database provider.
 
 6. Push schema to database
 
-```sh
-npx prisma db push
-```
+   ```sh
+   npx prisma db push
+   ```
 
 7. Open Prisma Studio
 
-```sh
-npx prisma studio
-```
+   ```sh
+   npx prisma studio
+   ```
 
 8. Run the project
 
-```sh
-npm run dev
-```
+   ```sh
+   npm run dev
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
