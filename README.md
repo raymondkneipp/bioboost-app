@@ -223,7 +223,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Raymond Kneipp - [@rfkquery](https://twitter.com/twitter_handle) - hello@raymondkneipp.com
 
-Project Link: [https://github.com/raymondkneipp/bioboost-app](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/raymondkneipp/bioboost-app](https://github.com/raymondkneipp/bioboost-app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
