@@ -24,7 +24,7 @@
     <a href="https://github.com/raymondkneipp/bioboost-app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/raymondkneipp/bioboost-app">View Demo</a>
+    <a href="https://app.bioboost.fit">View Demo</a>
     ·
     <a href="https://github.com/raymondkneipp/bioboost-app/issues">Report Bug</a>
     ·
